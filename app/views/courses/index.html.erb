@@ -1,0 +1,11 @@
+<% if @courses.empty? %>
+  <%= 'Nenhum curso disponível' %>
+<% end%>
+
+<% @courses.each do |course| %>
+  <%= link_to course.name, course %>
+  <%= course.description %>
+  <%= number_to_currency course.price, unit: 'R$', separator: ',', delimiter: '.', format: '%u %n' %>
+<% end %>
+
+<%= link_to 'Voltar', root_path %>
