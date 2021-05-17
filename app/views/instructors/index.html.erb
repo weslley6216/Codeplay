@@ -1,3 +1,7 @@
+<% if @instructors.empty? %>
+  <%= 'Nenhum professor cadastrado! '%>
+<% end %>
+
 <% @instructors.each do |instructor| %>
   <%= link_to instructor.name, instructor %>
 <% end %>

@@ -1,3 +1,7 @@
+<% @instructor.errors.messages.each do |message| %>
+  <%= message %>
+<% end %>
+
 <h1>Novo Professor</h1>
 
 <%= form_with model: @instructor do |form| %>
