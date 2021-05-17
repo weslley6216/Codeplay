@@ -1,0 +1,24 @@
+<% @course.errors.messages.each do |message| %>
+  <%= message %>
+<% end %>
+
+<h1>Novo Curso</h1>
+
+<%= form_with model: @course do |form| %>
+    <%= form.label :name, 'Nome' %><br>
+    <%= form.text_field :name %><br>
+
+    <%= form.label :description, 'Descrição' %><br>
+    <%= form.text_area :description %><br>
+
+    <%= form.label :code, 'Código' %><br>
+    <%= form.text_field :code %><br>
+
+    <%= form.label :price, 'Preço' %><br>
+    <%= form.number_field :price %><br>
+
+    <%= form.label :enrollment_deadline, 'Data limite de matrícula' %><br>
+    <%= form.date_field :enrollment_deadline %><br>
+
+    <%= form.submit 'Criar curso' %>
+<% end%> 
