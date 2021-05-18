@@ -7,4 +7,4 @@
 
 <%= link_to 'Voltar', instructors_path %>
 <%= link_to 'Editar', edit_instructor_path(@instructor) %>
-
+<%= link_to 'Apagar', instructor_path(@instructor), method: :delete, data: { confirm: 'Tem certeza?' } %>

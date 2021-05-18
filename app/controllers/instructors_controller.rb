@@ -33,13 +33,21 @@ class InstructorsController < ApplicationController
     end
   end
 
+  def destroy
+    @instructor = Instructor.find(params[:id])
+    if @instructor.destroy
+      redirect_to instructors_path
+      flash[:success] = 'Professor removido com sucesso!'
+    else
+      render :show
+    end
+  end
+
 
   private
 
   def instructor_params
     params.require(:instructor).permit(:name, :email, :bio)
   end
-
-
 
 end
