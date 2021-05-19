@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[edit update show]
+  before_action :set_course, only: %i[edit update show destroy]
   
   def index
     @courses = Course.all
@@ -30,6 +30,11 @@ class CoursesController < ApplicationController
     flash[:notice] = 'Curso atualizado com sucesso!'
   end
 
+  def destroy
+    @course.destroy
+    redirect_to courses_path
+    flash[:notice] = 'Curso removido com sucesso'
+  end
 
   private
 

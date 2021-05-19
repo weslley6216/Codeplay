@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 describe 'Admin registers courses' do
-  it 'from index page' do
-    visit root_path
-    click_on 'Cursos'
-
-    expect(page).to have_link('Registrar um Curso',
-                              href: new_course_path)
-  end
-
   it 'successfully' do
     visit root_path
     click_on 'Cursos'
@@ -43,6 +35,7 @@ describe 'Admin registers courses' do
     fill_in 'Código', with: ''
     fill_in 'Preço', with: ''
     fill_in 'Data limite de matrícula', with: ''
+    #attach_file 'Banner', Rails.root.join('spec/fixtures/course.jpg')
     click_on 'Criar curso'
 
     expect(page).to have_content('não pode ficar em branco', count: 3)
