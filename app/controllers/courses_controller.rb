@@ -1,14 +1,18 @@
 class CoursesController < ApplicationController
+  before_action :set_course, only: %i[edit update show]
+  
   def index
     @courses = Course.all
   end
 
   def show
-    @course = Course.find(params[:id])
   end
 
   def new
     @course = Course.new
+  end
+
+  def edit
   end
 
   def create
@@ -20,10 +24,18 @@ class CoursesController < ApplicationController
     end
   end
 
-
+  def update
+    @course.update(course_params)
+    redirect_to @course
+    flash[:notice] = 'Curso atualizado com sucesso!'
+  end
 
 
   private
+
+  def set_course
+    @course = Course.find(params[:id])
+  end
 
   def course_params
     params.require(:course).permit(:name, :description, :code, :price, :enrollment_deadline)
