@@ -1,8 +1,8 @@
-<% @course.errors.messages.each do |message| %>
+<% course.errors.full_messages.each do |message| %>
   <%= message %>
 <% end %>
 
-<%= form_with model: @course do |form| %>
+<%= form_with model: course do |form| %>
     <%= form.label :name, 'Nome' %><br>
     <%= form.text_field :name %><br>
 
@@ -18,6 +18,6 @@
     <%= form.label :enrollment_deadline, 'Data limite de matrícula' %><br>
     <%= form.date_field :enrollment_deadline %><br>
 
-    <%= form.submit @course.persisted? ? 'Atualizar' : 'Criar curso' %>
+    <%= form.submit course.persisted? ? 'Atualizar' : 'Criar curso' %>
 
 <% end%> 

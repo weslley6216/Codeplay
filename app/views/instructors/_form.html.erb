@@ -1,8 +1,8 @@
-<% @instructor.errors.messages.each do |message| %>
+<% instructor.errors.messages.each do |message| %>
   <%= message %>
 <% end %>
 
-<%= form_with model: @instructor do |form| %>
+<%= form_with model: instructor do |form| %>
     <%= form.label :name, 'Nome' %><br>
     <%= form.text_field :name %><br>
 
@@ -15,6 +15,6 @@
     <%= form.label :profile_picture, 'Foto de Perfil' %><br>
     <%= form.file_field :profile_picture %><br>
 
-    <%= form.submit @instructor.persisted? ? 'Atualizar' : 'Cadastrar Professor' %>
+    <%= form.submit instructor.persisted? ? 'Atualizar' : 'Cadastrar Professor' %>
     
 <% end%> 
