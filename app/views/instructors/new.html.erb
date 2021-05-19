@@ -1,21 +1,3 @@
-<% @instructor.errors.messages.each do |message| %>
-  <%= message %>
-<% end %>
-
 <h1>Novo Professor</h1>
 
-<%= form_with model: @instructor do |form| %>
-    <%= form.label :name, 'Nome' %><br>
-    <%= form.text_field :name %><br>
-
-    <%= form.label :email, 'Email' %><br>
-    <%= form.text_field :email %><br>
-
-    <%= form.label :bio, 'Descrição' %><br>
-    <%= form.text_field :bio %><br>
-
-    <%= form.label :profile_picture, 'Foto de Perfil' %><br>
-    <%= form.file_field :profile_picture %><br>
-
-    <%= form.submit 'Cadastrar Professor' %>
-<% end%> 
+<%= render 'form', instructor: @instructor %>
