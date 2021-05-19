@@ -54,6 +54,6 @@ describe 'Admin updates instructor registration' do
     attach_file 'Foto de Perfil', Rails.root.join('spec/fixtures/foto_perfil.jpeg')
     click_on 'Cadastrar Professor'
 
-    expect(page).to have_content('O email informado já está em uso')
+    expect(page).to have_content('já está em uso')
   end
 end

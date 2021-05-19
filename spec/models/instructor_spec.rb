@@ -18,7 +18,7 @@ describe Instructor do
 
       instructor.valid?
 
-      expect(instructor.errors[:email]).to include('O email informado já está em uso')
+      expect(instructor.errors[:email]).to include('já está em uso')
     end
   end
 end

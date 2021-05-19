@@ -44,6 +44,6 @@ describe 'Admin registers instructors' do
     fill_in 'Email', with: 'guanabara@codeplay.com'
     click_on 'Cadastrar Professor'
 
-    expect(page).to have_content('O email informado já está em uso')
+    expect(page).to have_content('não pode ficar em branco')
   end
 end
