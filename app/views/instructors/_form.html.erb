@@ -1,5 +1,5 @@
-<% instructor.errors.messages.each do |message| %>
-  <%= message %>
+<% instructor.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
 <% end %>
 
 <%= form_with model: instructor do |form| %>
