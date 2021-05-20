@@ -239,6 +239,7 @@ pt-BR:
     no_course_available: 'Nenhum curso disponível!'
     no_instructor_registered: 'Nenhum professor cadastrado!'
     confirm: 'Tem certeza?'
+    select: 'Selecione'
   new:
     course: 'Novo Curso'
     instructor: 'Novo Professor'

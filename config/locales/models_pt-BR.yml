@@ -15,6 +15,7 @@ pt-BR:
         code: 'Código'
         price: 'Preço'
         enrollment_deadline: 'Data limite de matrícula'
+        instructor_id: 'Professor'
         updated_at: Atualizado em
         created_at: Criado em
       instructor:
