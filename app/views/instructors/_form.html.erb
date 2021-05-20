@@ -3,18 +3,18 @@
 <% end %>
 
 <%= form_with model: instructor do |form| %>
-    <%= form.label :name, 'Nome' %><br>
-    <%= form.text_field :name %><br>
+    <p><%= form.label :name %><br>
+    <p><%= form.text_field :name %></p>
 
-    <%= form.label :email, 'Email' %><br>
-    <%= form.text_field :email %><br>
+    <p><%= form.label :email %></p>
+    <p><%= form.text_field :email %></p>
 
-    <%= form.label :bio, 'Descrição' %><br>
-    <%= form.text_field :bio %><br>
+    <p><%= form.label :bio %></p>
+    <p><%= form.text_field :bio %></p>
 
-    <%= form.label :profile_picture, 'Foto de Perfil' %><br>
-    <%= form.file_field :profile_picture %><br>
+    <p><%= form.label :profile_picture %></p>
+    <p><%= form.file_field :profile_picture %></p>
 
-    <%= form.submit instructor.persisted? ? 'Atualizar' : 'Cadastrar Professor' %>
+    <p><%= form.submit instructor.persisted? ? t('links.instructor.update') : t('links.instructor.register') %></p>
     
 <% end%> 

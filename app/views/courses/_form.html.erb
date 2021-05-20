@@ -1,23 +1,23 @@
 <% course.errors.full_messages.each do |message| %>
-  <%= message %>
+  <p><%= message %></p>
 <% end %>
 
 <%= form_with model: course do |form| %>
-    <%= form.label :name, 'Nome' %><br>
-    <%= form.text_field :name %><br>
+    <p><%= form.label :name %></p>
+    <p><%= form.text_field :name %></p>
 
-    <%= form.label :description, 'Descrição' %><br>
-    <%= form.text_area :description %><br>
+    <p><%= form.label :description %></p>
+    <p><%= form.text_area :description %></p>
 
-    <%= form.label :code, 'Código' %><br>
-    <%= form.text_field :code %><br>
+    <p><%= form.label :code %></p>
+    <p><%= form.text_field :code %></p>
 
-    <%= form.label :price, 'Preço' %><br>
-    <%= form.number_field :price %><br>
+    <p><%= form.label :price %>
+    <p><%= form.number_field :price %></p>
 
-    <%= form.label :enrollment_deadline, 'Data limite de matrícula' %><br>
-    <%= form.date_field :enrollment_deadline %><br>
+    <p><%= form.label :enrollment_deadline %></p>
+    <p><%= form.date_field :enrollment_deadline %></p>
 
-    <%= form.submit course.persisted? ? 'Atualizar' : 'Criar curso' %>
+    <p><%= form.submit course.persisted? ? t('links.course.update') : t('links.course.create') %></p>
 
 <% end%> 

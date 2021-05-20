@@ -4,7 +4,7 @@ describe 'Admin registers instructors' do
   it 'successfully' do
     visit root_path
     click_on 'Professores'
-    click_on 'Registrar um Professor'
+    click_on 'Cadastrar Professor'
 
     fill_in 'Nome', with: 'Gustavo Guanabara'
     fill_in 'Email', with: 'guanabara@codeplay.com'
@@ -24,7 +24,7 @@ describe 'Admin registers instructors' do
                        bio: 'Professor por vocação')
     visit root_path
     click_on 'Professores'
-    click_on 'Registrar um Professor'
+    click_on 'Cadastrar Professor'
     fill_in 'Nome', with: ''
     fill_in 'Email', with: ''
     fill_in 'Descrição', with: ''
@@ -40,7 +40,7 @@ describe 'Admin registers instructors' do
 
     visit root_path
     click_on 'Professores'
-    click_on 'Registrar um Professor'
+    click_on 'Cadastrar Professor'
     fill_in 'Email', with: 'guanabara@codeplay.com'
     click_on 'Cadastrar Professor'
 

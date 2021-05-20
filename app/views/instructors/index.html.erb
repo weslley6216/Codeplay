@@ -1,10 +1,10 @@
 <% if @instructors.empty? %>
-  <%= 'Nenhum professor cadastrado! '%>
+  <%= t('message.no_instructor_registered') %>
 <% end %>
 
 <% @instructors.each do |instructor| %>
   <%= link_to instructor.name, instructor %>
 <% end %>
 
-<%= link_to 'Voltar', root_path %>
-<%= link_to 'Registrar um Professor', new_instructor_path %>
+<%= link_to t('links.back'), root_path %>
+<%= link_to t('links.instructor.register'), new_instructor_path %>

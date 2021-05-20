@@ -2,17 +2,21 @@ require 'rails_helper'
 
 describe 'Admin view courses' do
   it 'successfully' do
+    instructor = Instructor.create!(name: 'Gustavo Guanabara',
+                                    email: 'guanabara@codeplay.com')
+
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: '22/12/2033')
+                   enrollment_deadline: '22/12/2033', instructor: instructor)
     Course.create!(name: 'Ruby on Rails',
                    description: 'Um curso de Ruby on Rails',
                    code: 'RUBYONRAILS', price: 20,
-                   enrollment_deadline: '20/12/2033')
+                   enrollment_deadline: '20/12/2033', instructor: instructor)
 
     visit root_path
     click_on 'Cursos'
-
+    
+    expect(page).to have_content('Gustavo Guanabara')
     expect(page).to have_content('Ruby')
     expect(page).to have_content('Um curso de Ruby')
     expect(page).to have_content('R$ 10,00')

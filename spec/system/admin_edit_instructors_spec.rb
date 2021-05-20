@@ -31,7 +31,7 @@ describe 'Admin updates instructor registration' do
                                       filename: 'foto_perfil.jpeg')
     visit root_path
     click_on 'Professores'
-    click_on 'Registrar um Professor'
+    click_on 'Cadastrar Professor'
     fill_in 'Nome', with: ''
     fill_in 'Email', with: ''
     fill_in 'Descrição', with: ''
@@ -49,7 +49,7 @@ describe 'Admin updates instructor registration' do
 
     visit root_path
     click_on 'Professores'
-    click_on 'Registrar um Professor'
+    click_on 'Cadastrar Professor'
     fill_in 'Email', with: 'guanabara@codeplay.com'
     attach_file 'Foto de Perfil', Rails.root.join('spec/fixtures/foto_perfil.jpeg')
     click_on 'Cadastrar Professor'

@@ -4,14 +4,14 @@ describe 'Admin registers courses' do
   it 'successfully' do
     visit root_path
     click_on 'Cursos'
-    click_on 'Registrar um Curso'
+    click_on 'Registrar Curso'
 
     fill_in 'Nome', with: 'Ruby on Rails'
     fill_in 'Descrição', with: 'Um curso de Ruby on Rails'
     fill_in 'Código', with: 'RUBYONRAILS'
     fill_in 'Preço', with: '30'
     fill_in 'Data limite de matrícula', with: '22/12/2033'
-    click_on 'Criar curso'
+    click_on 'Criar Curso'
 
     expect(current_path).to eq(course_path(Course.last))
     expect(page).to have_content('Ruby on Rails')
@@ -29,14 +29,14 @@ describe 'Admin registers courses' do
 
     visit root_path
     click_on 'Cursos'
-    click_on 'Registrar um Curso'
+    click_on 'Registrar Curso'
     fill_in 'Nome', with: ''
     fill_in 'Descrição', with: ''
     fill_in 'Código', with: ''
     fill_in 'Preço', with: ''
     fill_in 'Data limite de matrícula', with: ''
     #attach_file 'Banner', Rails.root.join('spec/fixtures/course.jpg')
-    click_on 'Criar curso'
+    click_on 'Criar Curso'
 
     expect(page).to have_content('não pode ficar em branco', count: 3)
   end
@@ -48,9 +48,9 @@ describe 'Admin registers courses' do
 
     visit root_path
     click_on 'Cursos'
-    click_on 'Registrar um Curso'
+    click_on 'Registrar Curso'
     fill_in 'Código', with: 'RUBYBASIC'
-    click_on 'Criar curso'
+    click_on 'Criar Curso'
 
     expect(page).to have_content('já está em uso')
   end
