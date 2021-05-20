@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Admin registers courses' do
   it 'successfully' do
+    Instructor.create!(name: 'Gustavo Guanabara',
+                       email: 'guanabara@codeplay.com')
+
     visit root_path
     click_on 'Cursos'
     click_on 'Registrar Curso'
@@ -11,9 +14,11 @@ describe 'Admin registers courses' do
     fill_in 'Código', with: 'RUBYONRAILS'
     fill_in 'Preço', with: '30'
     fill_in 'Data limite de matrícula', with: '22/12/2033'
+    select 'Gustavo Guanabara', from: 'Professor'
     click_on 'Criar Curso'
 
     expect(current_path).to eq(course_path(Course.last))
+    expect(page).to have_content('Gustavo Guanabara')
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('Um curso de Ruby on Rails')
     expect(page).to have_content('RUBYONRAILS')
@@ -23,9 +28,11 @@ describe 'Admin registers courses' do
   end
 
   it 'and attributes cannot be blank' do
+    instructor = Instructor.create!(name: 'Gustavo Guanabara',
+                                    email: 'guanabara@codeplay.com')
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: '22/12/2033')
+                   enrollment_deadline: '22/12/2033', instructor: instructor)
 
     visit root_path
     click_on 'Cursos'
@@ -42,9 +49,11 @@ describe 'Admin registers courses' do
   end
 
   it 'and code must be unique' do
+    instructor = Instructor.create!(name: 'Gustavo Guanabara',
+                                    email: 'guanabara@codeplay.com')
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: '22/12/2033')
+                   enrollment_deadline: '22/12/2033', instructor: instructor)
 
     visit root_path
     click_on 'Cursos'
