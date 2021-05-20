@@ -9,6 +9,8 @@
   <dd><%= number_to_currency @course.price %></dd>
   <dt><%= @course.class.human_attribute_name(:enrollment_deadline) %></dt>
   <dd><%= l(@course.enrollment_deadline) %></dd>
+  <dt><%= @course.class.human_attribute_name(:instructor_id) %></dt>
+  <dd><%= @course.instructor.name %></dd>
 </dl>
 
 <%= link_to t('links.back'), courses_path %>

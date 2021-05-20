@@ -3,9 +3,12 @@
 <% end%>
 
 <% @courses.each do |course| %>
-  <%= link_to course.name, course %>
-  <%= course.description %>
-  <%= number_to_currency course.price %>
+  <div>
+    <p><%= link_to course.name, course %></p>
+    <p><%= course.description %></p>
+    <p><%= number_to_currency course.price %></p>
+    <p><%= course.instructor.name %></p>
+  </div>
 <% end %>
   
 <%= link_to t('links.back'), root_path %>
