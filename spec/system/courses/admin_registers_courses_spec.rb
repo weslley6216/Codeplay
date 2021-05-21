@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Admin registers courses' do
   it 'successfully' do
-    Instructor.create!(name: 'Gustavo Guanabara',
+    instructor = Instructor.create!(name: 'Gustavo Guanabara',
                        email: 'guanabara@codeplay.com')
 
     visit root_path
@@ -14,11 +14,10 @@ describe 'Admin registers courses' do
     fill_in 'Código', with: 'RUBYONRAILS'
     fill_in 'Preço', with: '30'
     fill_in 'Data limite de matrícula', with: '22/12/2033'
-    select 'Gustavo Guanabara', from: 'Professor'
+    select "#{instructor.name} - #{instructor.email}", from: 'Professor'
     click_on 'Criar Curso'
 
     expect(current_path).to eq(course_path(Course.last))
-    expect(page).to have_content('Gustavo Guanabara')
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('Um curso de Ruby on Rails')
     expect(page).to have_content('RUBYONRAILS')
