@@ -1,6 +1,5 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[edit update show destroy]
-  before_action :set_instructor_options
   
   def index
     @courses = Course.all
@@ -10,10 +9,12 @@ class CoursesController < ApplicationController
   end
 
   def new
+    @instructors = Instructor.all
     @course = Course.new
   end
 
   def edit
+    @instructors = Instructor.all
   end
 
   def create
@@ -21,6 +22,7 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to @course
     else
+      @instructors = Instructor.all
       render :new
     end
   end
@@ -47,7 +49,4 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:name, :description, :code, :price, :enrollment_deadline, :instructor_id)
   end
 
-  def set_instructor_options
-    @instructor_options = Instructor.all.pluck(:name, :id)
-  end
 end

@@ -19,7 +19,7 @@
     <p><%= form.date_field :enrollment_deadline %></p>
 
     <p><%= form.label :instructor_id %></p>
-    <p><%= form.select(:instructor_id, @instructor_options, include_blank: t('message.select')) %></p>
+    <p><%= form.collection_select :instructor_id, instructors, :id, :display_name, { include_blank: t('message.select')}  %></p>
 
     <p><%= form.submit course.persisted? ? t('links.course.update') : t('links.course.create') %></p>
 
