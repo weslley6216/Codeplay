@@ -3,4 +3,5 @@ class Course < ApplicationRecord
   validates :code, uniqueness: true
 
   belongs_to :instructor
+  has_many :lessons
 end
