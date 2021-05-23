@@ -1,0 +1,13 @@
+<% if @course.lessons.empty? %>
+  <%= 'Nenhuma aula disponível para este curso' %>
+<% end%>
+
+<% @course.lessons.each do |lesson| %>
+  <div>
+    <p><%= lesson.name %></p>
+    <p><%= lesson.content %></p>
+  </div>
+<% end %>
+
+<%= link_to t('links.back'), course_path(@course)%>
+<%= link_to 'Cadastrar aula', new_course_lesson_path %>
