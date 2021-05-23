@@ -21,6 +21,6 @@
     <p><%= form.label :instructor_id %></p>
     <p><%= form.collection_select :instructor_id, instructors, :id, :display_name, { include_blank: t('message.select')}  %></p>
 
-    <p><%= form.submit course.persisted? ? t('links.course.update') : t('links.course.create') %></p>
+    <p><%= form.submit button_text %></p>
 
 <% end%> 
