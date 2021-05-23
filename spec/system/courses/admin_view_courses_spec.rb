@@ -16,7 +16,6 @@ describe 'Admin view courses' do
     visit root_path
     click_on 'Cursos'
     
-    expect(page).to have_content('Gustavo Guanabara')
     expect(page).to have_content('Ruby')
     expect(page).to have_content('Um curso de Ruby')
     expect(page).to have_content('R$ 10,00')

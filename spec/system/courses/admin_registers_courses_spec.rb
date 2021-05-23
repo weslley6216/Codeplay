@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Admin registers courses' do
   it 'successfully' do
     instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                       email: 'guanabara@codeplay.com')
+                                    email: 'guanabara@codeplay.com')
 
     visit root_path
     click_on 'Cursos'
