@@ -29,14 +29,12 @@ class CoursesController < ApplicationController
 
   def update
     @course.update(course_params)
-    redirect_to @course
-    flash[:notice] = 'Curso atualizado com sucesso!'
+    redirect_to @course, notice: 'Curso atualizado com sucesso!'
   end
 
   def destroy
     @course.destroy
-    redirect_to courses_path
-    flash[:notice] = 'Curso removido com sucesso'
+    redirect_to courses_path, notice: 'Curso removido com sucesso'
   end
 
   private
