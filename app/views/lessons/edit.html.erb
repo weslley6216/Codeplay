@@ -1,0 +1,16 @@
+<h1>Editando uma Aula</h1>
+
+<% @lesson.errors.full_messages.each do |message| %>
+  <%= message %>
+<% end %>
+
+<%= form_with model: [@course, @lesson] do |form| %>
+  <p><%= form.label :name %></p>
+  <p><%= form.text_field :name %></p>
+
+  <p><%= form.label :content %></p>
+  <p><%= form.text_field :content %></p>
+
+  <p><%= form.submit 'Atualizar' %></p>
+
+<% end %>
