@@ -25,3 +25,7 @@ pt-BR:
   edit:
     course: 'Editando Curso'
     instructor: 'Editando Professor'
+  update:
+    success: 'Curso atualizado com sucesso!'
+  destroy:
+    success: 'Curso removido com sucesso'
