@@ -8,6 +8,7 @@
     <p><%= lesson.name %></p>
     <p><%= lesson.content %></p>
     <p><%= link_to 'Editar', edit_course_lesson_path(@course, lesson) %></p>
+    <p><%= link_to 'Apagar', [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' } %></p>
   </div>
 <% end %>
 

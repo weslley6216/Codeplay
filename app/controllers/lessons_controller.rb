@@ -33,9 +33,16 @@ class LessonsController < ApplicationController
     end
   end
 
+  def destroy
+    @course = Course.find(params[:course_id])
+    @lesson = @course.lessons.find(params[:id])
+    @lesson.destroy
+    redirect_to course_lessons_path(@course), notice: 'Aula removida com sucesso'
+  end
+
   private
   
   def lesson_params
-    params.require(:lesson).permit(:name, :content, :course_id)
+    params.require(:lesson).permit(:name, :content)
   end
 end
