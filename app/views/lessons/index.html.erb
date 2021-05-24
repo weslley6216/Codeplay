@@ -1,16 +1,16 @@
 <h1><%= @course.name %></h1>
 <% if @course.lessons.empty? %>
-  <%= 'Nenhuma aula disponível para este curso' %>
+  <%= t('message.no_lesson_available') %>
 <% end%>
 
 <% @course.lessons.each do |lesson| %>
   <div>
     <p><%= lesson.name %></p>
     <p><%= lesson.content %></p>
-    <p><%= link_to 'Editar', edit_course_lesson_path(@course, lesson) %></p>
-    <p><%= link_to 'Apagar', [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <p><%= link_to t('links.edit'), edit_course_lesson_path(@course, lesson) %></p>
+    <p><%= link_to t('links.delete'), [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' } %></p>
   </div>
 <% end %>
 
 <%= link_to t('links.back'), course_path(@course)%>
-<%= link_to 'Cadastrar aula', new_course_lesson_path %>
+<%= link_to t('lesson.register'), new_course_lesson_path %>

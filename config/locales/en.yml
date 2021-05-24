@@ -1,33 +1,39 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
+---
 en:
-  hello: "Hello world"
+  links:
+    courses: 'Courses'
+    instructors: 'Instructors'
+    edit: 'Edit'
+    delete: 'Delete'
+    back: 'Back'
+    home: Home
+  course:
+    register: 'Register Course'
+    create: 'Create Course'
+    update: 'Update'
+  instructor:
+    register: 'Register Instructor'
+    update: 'Update'
+  lesson:
+    create: 'Create Lesson'
+    register: 'Register New Lesson'
+    show: 'View Lessons'
+    update: 'Update'
+  message:
+    no_course_available: 'No courses available!'
+    no_instructor_registered: 'No registered instructors!'
+    no_lesson_available: 'No lessons available for this course!'
+    confirm: 'Are you sure?'
+    select: 'Select'
+  home:
+    message: Welcome to the course and lessons management system.
+  new:
+    course: 'New Course'
+    instructor: 'New Instructor'
+  edit:
+    course: 'Editing Course'
+    instructor: 'Editing Instructor'
+  update:
+    success: 'Course updated successfully!'
+  destroy:
+    success: 'Course removed successfully!'

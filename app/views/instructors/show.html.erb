@@ -10,6 +10,6 @@
   <p><%= @instructor.bio %></p>
 </ul>
 
-<%= link_to 'Voltar', instructors_path %>
-<%= link_to 'Editar', edit_instructor_path(@instructor) %>
-<%= link_to 'Apagar', instructor_path(@instructor), method: :delete, data: { confirm: t('message.confirm') } %>
+<%= link_to t('links.back'), instructors_path %>
+<%= link_to t('links.edit'), edit_instructor_path(@instructor) %>
+<%= link_to t('links.delete'), instructor_path(@instructor), method: :delete, data: { confirm: t('message.confirm') } %>

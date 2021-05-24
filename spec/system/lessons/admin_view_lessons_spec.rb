@@ -33,6 +33,6 @@ describe 'Admin view lessons from a course and return to the previous page' do
     click_on 'Cursos'
     click_on 'Ruby'
     click_on 'Ver Aulas'
-    expect(page).to have_content('Nenhuma aula disponível para este curso')
+    expect(page).to have_content('Nenhuma aula disponível para este curso!')
   end
 end

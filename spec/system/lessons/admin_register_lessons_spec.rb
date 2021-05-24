@@ -11,7 +11,7 @@ describe 'Admin registers lessons in a course' do
     visit courses_path
     click_on 'Ruby'
     click_on 'Ver Aulas'
-    click_on 'Cadastrar aula'
+    click_on 'Cadastrar Aula'
 
     expect(page).to have_content('Cadastrando uma aula')
     expect(page).to have_content('Nome')
@@ -19,7 +19,7 @@ describe 'Admin registers lessons in a course' do
 
     fill_in 'Nome', with: 'Primeira aula'
     fill_in 'Conteúdo', with: 'Tipos primitivos'
-    click_on 'Criar aula'
+    click_on 'Criar Aula'
     
     expect(current_path).to eq(course_lessons_path(Lesson.last))
     expect(page).to have_content('Primeira aula')
@@ -35,11 +35,11 @@ describe 'Admin registers lessons in a course' do
                             enrollment_deadline: '22/12/2033', instructor: instructor)
 
     visit course_lessons_path(course)
-    click_on 'Cadastrar aula'
+    click_on 'Cadastrar Aula'
 
     fill_in 'Nome', with: ''
     fill_in 'Conteúdo', with: ''
-    click_on 'Criar aula'
+    click_on 'Criar Aula'
 
    expect(page).to have_content('não pode ficar em branco', count: 2)
   end
@@ -53,11 +53,11 @@ describe 'Admin registers lessons in a course' do
     Lesson.create!(name: 'Primeira aula', content: 'Tipos primitivos', course: course)
 
     visit course_lessons_path(course)
-    click_on 'Cadastrar aula'
+    click_on 'Cadastrar Aula'
 
     fill_in 'Nome', with: 'Primeira aula'
     fill_in 'Conteúdo', with: 'Coleções'
-    click_on 'Criar aula'
+    click_on 'Criar Aula'
 
     expect(page).to have_content('já está em uso')
   end

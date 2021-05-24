@@ -6,19 +6,27 @@ pt-BR:
     edit: 'Editar'
     delete: 'Apagar'
     back: 'Voltar'
-    course:
-      register: 'Registrar Curso'
-      create: 'Criar Curso'
-      update: 'Atualizar'
-    instructor:
-      register: 'Cadastrar Professor'
-      create: 'Criar Curso'
-      update: 'Atualizar'
+    home: 'Início'
+  course:
+    register: 'Registrar Curso'
+    create: 'Criar Curso'
+    update: 'Atualizar'
+  instructor:
+    register: 'Cadastrar Professor'
+    update: 'Atualizar'
+  lesson:
+    create: 'Criar Aula'
+    register: 'Cadastrar Nova Aula'
+    show: 'Ver Aulas'
+    update: 'Atualizar'
   message:
     no_course_available: 'Nenhum curso disponível!'
     no_instructor_registered: 'Nenhum professor cadastrado!'
+    no_lesson_available: 'Nenhuma aula disponível para este curso!'
     confirm: 'Tem certeza?'
     select: 'Selecione'
+  home: 
+    message: Boas vindas ao sistema de gestão de cursos e aulas.
   new:
     course: 'Novo Curso'
     instructor: 'Novo Professor'
