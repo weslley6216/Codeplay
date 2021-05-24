@@ -1,15 +1,15 @@
 class LessonsController < ApplicationController
+  before_action :set_course, only: %i[index new create edit update destroy]
+  before_action :set_lesson, only: %i[edit update destroy]
+
   def index
-    @course = Course.find(params[:course_id])
   end
 
   def new
-    @course = Course.find(params[:course_id])
     @lesson = Lesson.new
   end
 
   def create
-    @course = Course.find(params[:course_id])
     @lesson = @course.lessons.build(lesson_params)
     if @lesson.save
       redirect_to course_lessons_path(@course)
@@ -19,13 +19,9 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    @course = Course.find(params[:course_id])
-    @lesson = @course.lessons.find(params[:id])
   end
 
   def update
-    @course = Course.find(params[:course_id])
-    @lesson = @course.lessons.find(params[:id])
     if @lesson.update(lesson_params)
       redirect_to course_lessons_path(@course), notice: 'Aula atualizada com sucesso'
     else
@@ -34,8 +30,6 @@ class LessonsController < ApplicationController
   end
 
   def destroy
-    @course = Course.find(params[:course_id])
-    @lesson = @course.lessons.find(params[:id])
     @lesson.destroy
     redirect_to course_lessons_path(@course), notice: 'Aula removida com sucesso'
   end
@@ -44,5 +38,13 @@ class LessonsController < ApplicationController
   
   def lesson_params
     params.require(:lesson).permit(:name, :content)
+  end
+
+  def set_course
+    @course = Course.find(params[:course_id])
+  end
+
+  def set_lesson
+    @lesson = @course.lessons.find(params[:id])
   end
 end
