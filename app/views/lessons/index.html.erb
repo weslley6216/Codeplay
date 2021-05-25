@@ -7,6 +7,7 @@
   <div>
     <p><%= lesson.name %></p>
     <p><%= lesson.content %></p>
+    <p><%= t('lesson.duration', count: lesson.duration) %></p>
     <p><%= link_to t('links.edit'), edit_course_lesson_path(@course, lesson) %></p>
     <p><%= link_to t('links.delete'), [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' } %></p>
   </div>
