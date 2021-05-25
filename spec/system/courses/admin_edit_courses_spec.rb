@@ -28,4 +28,26 @@ describe 'Admin updates courses' do
     expect(page).to have_text('Curso atualizado com sucesso!')
 
   end
+
+  it 'and attributes cannot be blank' do
+    instructor = Instructor.create!(name: 'Gustavo Guanabara',
+                                    email: 'guanabara@codeplay.com')
+    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                            code: 'RUBYBASIC', price: 10,
+                            enrollment_deadline: '22/12/2033', instructor: instructor)
+
+    visit course_path(course)
+    click_on 'Editar'
+
+    fill_in 'Nome', with: ''
+    fill_in 'Descrição', with: ''
+    fill_in 'Código', with: ''
+    fill_in 'Preço', with: ''
+    fill_in 'Data limite de matrícula', with: ''
+    select 'Gustavo Guanabara', from: 'Professor'
+    click_on 'Atualizar'
+
+    expect(page).to have_content('não pode ficar em branco', count: 3)
+
+  end
 end

@@ -16,7 +16,7 @@ describe Lesson do
       course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                               code: 'RUBYBASIC', price: 10,
                               enrollment_deadline: '22/12/2033', instructor: instructor)
-      Lesson.create!(name: 'Primeira aula', content: 'Tipos Primitivos', course: course)
+      Lesson.create!(name: 'Primeira aula', content: 'Tipos Primitivos', duration: 20, course: course)
       
       lesson = Lesson.new(name: 'Primeira aula')
 

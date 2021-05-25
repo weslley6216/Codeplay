@@ -7,7 +7,7 @@ describe 'Admin deletes lesson' do
     course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', instructor: instructor)
-    lesson = Lesson.create!(name: 'Primeira aula', content: 'Tipos primitivos', course: course)
+    lesson = Lesson.create!(name: 'Primeira aula', content: 'Tipos primitivos', duration: 20, course: course)
 
     visit course_lessons_path(lesson)
 
