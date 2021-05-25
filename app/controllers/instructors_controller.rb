@@ -14,7 +14,7 @@ class InstructorsController < ApplicationController
   def create
     @instructor = Instructor.new(instructor_params)
     if @instructor.save
-      redirect_to @instructor
+      redirect_to @instructor, notice: 'Professor Cadastrado com Sucesso'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class InstructorsController < ApplicationController
   def update
     @instructor = Instructor.find(params[:id])
     if @instructor.update(instructor_params)
-      redirect_to @instructor
+      redirect_to @instructor, notice: 'Professor Atualizado com Sucesso'
     else
       render :edit
     end
@@ -35,11 +35,11 @@ class InstructorsController < ApplicationController
 
   def destroy
     @instructor = Instructor.find(params[:id])
-    if @instructor.destroy
-      redirect_to instructors_path
-      flash[:success] = 'Professor removido com sucesso!'
+    if @instructor.courses.empty?
+      @instructor.destroy
+      redirect_to instructors_path, notice: t('instructor.message_destroy')
     else
-      render :show
+      redirect_to @instructor, notice: t('instructor.message_error')
     end
   end
 
