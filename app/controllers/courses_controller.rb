@@ -28,8 +28,12 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course.update(course_params)
-    redirect_to @course, notice: 'Curso atualizado com sucesso!'
+    if @course.update(course_params)
+      redirect_to @course, notice: 'Curso atualizado com sucesso!'
+    else
+      @instructors = Instructor.all
+      render :edit
+    end
   end
 
   def destroy
