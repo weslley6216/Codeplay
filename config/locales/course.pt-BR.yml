@@ -1,0 +1,38 @@
+---
+  pt-BR:
+    course:
+      one: 'Curso'
+      other: 'Cursos'
+    activerecord:
+      models:
+        course: 'Curso'
+      attributes:
+        course:
+          name: 'Nome'
+          description: 'Descrição'
+          code: 'Código'
+          price: 'Preço'
+          enrollment_deadline: 'Data limite de matrícula'
+          instructor: 'Professor'
+          instructor_id: 'Professor'
+    home:
+      courses: 'Cursos'
+    new:
+      course: 'Cadastrando um curso'
+    edit:
+      course: 'Editando um curso'
+    messages:
+      no_course: 'Nenhum curso disponível'
+      course_created: 'Curso cadastrado com sucesso!'
+      course_updated: 'Curso atualizado com sucesso!'
+      course_removed: 'Curso removido com sucesso!'
+    course:
+      new: 'Criando um curso'
+      edit: 'Editando um curso'
+
+
+
+      
+        
+
+

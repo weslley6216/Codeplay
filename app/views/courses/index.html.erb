@@ -1,5 +1,5 @@
 <% if @courses.empty? %>
-  <%= t('message.no_course_available') %>
+  <%= t('messages.no_course') %>
 <% end%>
 
 <% @courses.each do |course| %>
@@ -11,4 +11,4 @@
 <% end %>
   
 <%= link_to t('links.back'), root_path %>
-<%= link_to t('course.register'), new_course_path %>
+<%= link_to t('links.course_create'), new_course_path %>

@@ -1,39 +1,35 @@
 ---
-en:
-  links:
-    courses: 'Courses'
-    instructors: 'Instructors'
-    edit: 'Edit'
-    delete: 'Delete'
-    back: 'Back'
-    home: Home
-  course:
-    register: 'Register Course'
-    create: 'Create Course'
-    update: 'Update'
-  instructor:
-    register: 'Register Instructor'
-    update: 'Update'
-  lesson:
-    create: 'Create Lesson'
-    register: 'Register New Lesson'
-    show: 'View Lessons'
-    update: 'Update'
-  message:
-    no_course_available: 'No courses available!'
-    no_instructor_registered: 'No registered instructors!'
-    no_lesson_available: 'No lessons available for this course!'
-    confirm: 'Are you sure?'
-    select: 'Select'
-  home:
-    message: Welcome to the course and lessons management system.
-  new:
-    course: 'New Course'
-    instructor: 'New Instructor'
-  edit:
-    course: 'Editing Course'
-    instructor: 'Editing Instructor'
-  update:
-    success: 'Course updated successfully!'
-  destroy:
-    success: 'Course removed successfully!'
+  en:
+    messages:
+      no_course: 'No courses available'
+      course_created: 'Course registered successfully!'
+      course_updated: 'Course updated successfully!'
+      course_removed: 'Course removed successfully!'
+      no_instructor: 'No registered instructors!'
+      instructor_created: 'Instructor Successfully Registered'
+      instructor_uptaded: 'Instructor Updated Successfully'
+      instructor_removed: 'Instructor removed successfully!'
+      instructor_removed_error: 'Error! Teacher has active courses on the platform!'
+      no_lesson: 'No lessons available for this course!'
+      lesson_created: 'Lesson successfully registered!'
+      lesson_updated: 'Lesson updated successfully!'
+      lesson_removed: 'Lesson removed successfully!'
+      welcome: 'Welcome to the course and class management system!'
+      confirm_delete: 'Are you sure?'
+
+    lesson:
+      new: 'New Lesson'
+      edit: 'Editing lesson'
+      duration:
+        zero: 'No duration'
+        one: '1 minute'
+        other: '%{count} minutes'
+
+    course:
+      new: 'New Course'
+      edit: 'Editando um curso'
+      
+    instructor:
+      new: 'New Instructor'
+      edit: 'Editing Instructor'
+    

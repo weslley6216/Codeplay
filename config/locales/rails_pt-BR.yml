@@ -148,7 +148,7 @@ pt-BR:
     select:
       prompt: Por favor selecione
     submit:
-      create: Criar %{model}
+      create: Cadastrar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
   number:
@@ -221,3 +221,19 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+  messages:
+    welcome: 'Boas vindas ao sistema de gestão de cursos e aulas!'
+    confirm_delete: 'Tem certeza?'
+    select: 'Selecione'
+  links:
+    home: 'Início'
+    edit: 'Editar'
+    update: 'Atualizar'
+    show: 'Mostrar'
+    delete: 'Apagar'
+    back: 'Voltar'
+    course_create: 'Criar Curso'
+    show_lessons: 'Ver Aulas'
+    register_new_lesson: 'Cadastrar Nova Aula'
+    register_new_instructor: 'Cadastrar Professor'
+

@@ -20,7 +20,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     if @course.save
-      redirect_to @course
+      redirect_to @course, notice: t('messages.course_created')
     else
       @instructors = Instructor.all
       render :new
@@ -29,7 +29,7 @@ class CoursesController < ApplicationController
 
   def update
     if @course.update(course_params)
-      redirect_to @course, notice: 'Curso atualizado com sucesso!'
+      redirect_to @course, notice: t('messages.course_updated')
     else
       @instructors = Instructor.all
       render :edit

@@ -17,6 +17,7 @@ describe 'Admin registers instructors' do
     expect(page).to have_content('guanabara@codeplay.com')
     expect(page).to have_content('Professor por vocação')
     expect(page).to have_css('img[src*="foto_perfil.jpeg"]')
+    expect(page).to have_content('Professor Cadastrado com Sucesso')
   end
 
   it 'and attributes cannot be blank' do

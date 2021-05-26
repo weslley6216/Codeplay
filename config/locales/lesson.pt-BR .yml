@@ -1,0 +1,36 @@
+---
+  pt-BR:
+    lesson:
+      one: Aula
+      other: Aulas
+      duration:
+        zero: 'Sem duração'
+        one: '1 minuto'
+        other: '%{count} minutos'
+      new: 'Cadastrando uma aula'
+      edit: 'Editando uma aula'
+    activerecord:
+      models:
+        lesson: 'Aula'
+      attributes:
+        lesson:
+          name: 'Nome'
+          content: 'Conteúdo'
+          duration: 'Duração'
+    new:
+      title: 'Cadastrando uma aula'
+    edit:
+      title: 'Editando uma aula'
+    messages:
+      no_lesson: 'Nenhuma aula disponível para este curso!'
+      lesson_created: 'Aula cadastrada com sucesso!'
+      lesson_updated: 'Aula atualizada com sucesso!'
+      lesson_removed: 'Aula removida com sucesso!'
+
+
+
+
+      
+        
+
+

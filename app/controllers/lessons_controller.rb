@@ -12,7 +12,7 @@ class LessonsController < ApplicationController
   def create
     @lesson = @course.lessons.build(lesson_params)
     if @lesson.save
-      redirect_to course_lessons_path(@course)
+      redirect_to course_lessons_path(@course), notice: t('messages.lesson_created')
     else
       render :new
     end
@@ -23,7 +23,7 @@ class LessonsController < ApplicationController
 
   def update
     if @lesson.update(lesson_params)
-      redirect_to course_lessons_path(@course), notice: 'Aula atualizada com sucesso'
+      redirect_to course_lessons_path(@course), notice: t('messages.lesson_updated')
     else
       render :edit
     end
@@ -31,7 +31,7 @@ class LessonsController < ApplicationController
 
   def destroy
     @lesson.destroy
-    redirect_to course_lessons_path(@course), notice: 'Aula removida com sucesso'
+    redirect_to course_lessons_path(@course), notice: t('messages.lesson_removed')
   end
 
   private

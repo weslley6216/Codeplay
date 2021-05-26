@@ -21,7 +21,7 @@ describe 'Admin updates lessons' do
     expect(page).to have_text('Segunda aula')
     expect(page).to have_text('Coleções')
     expect(page).to have_text('1 minuto')
-    expect(page).to have_text('Aula atualizada com sucesso')
+    expect(page).to have_text('Aula atualizada com sucesso!')
 
   end
 end

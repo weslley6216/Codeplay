@@ -1,0 +1,32 @@
+---
+  pt-BR:
+    instructor:
+      one: 'Professor'
+      other: 'Professores'
+    activerecord:
+      models:
+        instructor: 'Professor'
+      attributes:
+        instructor:
+          name: 'Nome'
+          email: 'Email'
+          bio: 'Descrição'
+          profile_picture: 'Foto de Perfil'
+    home:
+      instructors: 'Professores'
+    messages:
+      no_instructor: 'Nenhum professor cadastrado!'
+      instructor_created: 'Professor Cadastrado com Sucesso'
+      instructor_uptaded: 'Professor Atualizado com Sucesso'
+      instructor_removed: 'Professor removido com sucesso!'
+      instructor_removed_error: 'Erro! Professor possui cursos ativos na plataforma!'
+    instructor:
+      new: 'Cadastrando um professor'
+      edit: 'Editando um professor'
+
+
+
+      
+        
+
+

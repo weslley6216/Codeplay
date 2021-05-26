@@ -20,13 +20,14 @@ describe 'Admin registers lessons in a course' do
     fill_in 'Nome', with: 'Primeira aula'
     fill_in 'Conteúdo', with: 'Tipos primitivos'
     fill_in 'Duração', with: '20 minutos'
-    click_on 'Criar Aula'
+    click_on 'Cadastrar Aula'
     
     expect(current_path).to eq(course_lessons_path(Lesson.last))
     expect(page).to have_content('Primeira aula')
     expect(page).to have_content('Tipos primitivos')
     expect(page).to have_content('20 minutos')
     expect(page).to have_link('Voltar', href: course_path(course))
+    expect(page).to have_content('Aula cadastrada com sucesso!')
   end
 
   it 'and attributes cannot be blank' do
@@ -42,7 +43,7 @@ describe 'Admin registers lessons in a course' do
     fill_in 'Nome', with: ''
     fill_in 'Conteúdo', with: ''
     fill_in 'Duração', with: ''
-    click_on 'Criar Aula'
+    click_on 'Cadastrar Aula'
 
     expect(page).to have_content('não pode ficar em branco', count: 3)
   end
@@ -61,7 +62,7 @@ describe 'Admin registers lessons in a course' do
     fill_in 'Nome', with: 'Primeira aula'
     fill_in 'Conteúdo', with: 'Coleções'
     fill_in 'Duração', with: '20 minutos'
-    click_on 'Criar Aula'
+    click_on 'Cadastrar Aula'
 
     expect(page).to have_content('já está em uso')
   end

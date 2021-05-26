@@ -19,8 +19,8 @@
     <p><%= form.date_field :enrollment_deadline %></p>
 
     <p><%= form.label :instructor_id %></p>
-    <p><%= form.collection_select :instructor_id, instructors, :id, :display_name, { include_blank: t('message.select')}  %></p>
+    <p><%= form.collection_select :instructor_id, instructors, :id, :display_name, { include_blank: t('messages.select')}  %></p>
 
-    <p><%= form.submit button_text %></p>
+    <p><%= form.submit %></p>
 
 <% end%> 

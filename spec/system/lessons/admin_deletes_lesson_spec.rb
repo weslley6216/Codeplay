@@ -12,7 +12,7 @@ describe 'Admin deletes lesson' do
     visit course_lessons_path(lesson)
 
     expect { click_link 'Apagar' }.to change { course.lessons.count }.by(-1)
-    expect(page).to have_content('Aula removida com sucesso')
+    expect(page).to have_content('Aula removida com sucesso!')
     expect(current_path).to eq(course_lessons_path(course))
 
   end

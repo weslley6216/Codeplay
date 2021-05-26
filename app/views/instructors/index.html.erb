@@ -1,5 +1,5 @@
 <% if @instructors.empty? %>
-  <%= t('message.no_instructor_registered') %>
+  <%= t('messages.no_instructor') %>
 <% end %>
 
 <% @instructors.each do |instructor| %>
@@ -7,4 +7,4 @@
 <% end %>
 
 <%= link_to t('links.back'), root_path %>
-<%= link_to t('instructor.register'), new_instructor_path %>
+<%= link_to t('links.register_new_instructor'), new_instructor_path %>
