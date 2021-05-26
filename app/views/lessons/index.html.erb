@@ -1,17 +1,26 @@
-<h1><%= @course.name %></h1>
+<h1><%= "#{@course.model_name.human} #{@course.name}" %></h1>
 <% if @course.lessons.empty? %>
   <%= t('messages.no_lesson') %>
 <% end%>
 
 <% @course.lessons.each do |lesson| %>
-  <div>
-    <p><%= lesson.name %></p>
-    <p><%= lesson.content %></p>
-    <p><%= t('lesson.duration', count: lesson.duration) %></p>
-    <p><%= link_to t('links.edit'), edit_course_lesson_path(@course, lesson) %></p>
-    <p><%= link_to t('links.delete'), [@course, lesson], method: :delete, data: { confirm: t('messages.confirm_delete') } %></p>
+  <div class="card border-dark mb-3" style="max-width: 18rem;">
+    <dd class="card-header"><%= "#{lesson.model_name.human} #{lesson.id}" %></dd>
+    <div class="card-body text-dark">
+      <dt><%= lesson.class.human_attribute_name(:name) %></dt>
+      <dd><%= lesson.name %></dd>
+      <dt><%= lesson.class.human_attribute_name(:content) %></dt>
+      <dd><%= lesson.content %></dd>
+      <dt><%= lesson.class.human_attribute_name(:duration) %></dt>
+      <dd><%= t('lesson.duration', count: lesson.duration) %></dd>
+    
+      <%= link_to t('links.edit'), edit_course_lesson_path(@course, lesson) %>
+      <%= link_to t('links.delete'), [@course, lesson], method: :delete, data: { confirm: t('messages.confirm_delete') } %>
+    </div>
   </div>
 <% end %>
 
 <%= link_to t('links.back'), course_path(@course)%>
 <%= link_to t('links.register_new_lesson'), new_course_lesson_path %>
+
+

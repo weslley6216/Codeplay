@@ -1,5 +1,5 @@
 <% @lesson.errors.full_messages.each do |message| %>
-  <%= message %>
+  <p><%= message %></p>
 <% end %>
 
 <%= form_with model: [course, lesson] do |form| %>
@@ -7,7 +7,7 @@
   <p><%= form.text_field :name %></p>
 
   <p><%= form.label :content %></p>
-  <p><%= form.text_field :content %></p>
+  <p><%= form.text_area :content %></p>
 
   <p><%= form.label :duration %></p>
   <p><%= form.number_field :duration, min: 1 %></p>
