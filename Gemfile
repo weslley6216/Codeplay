@@ -23,6 +23,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   
   gem 'capybara'
+
+  gem  'shoulda-matchers' ,  '~> 4.0' 
 end
 
 group :development do

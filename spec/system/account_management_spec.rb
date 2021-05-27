@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Account managesentt' do
+describe 'Account management' do
   context 'registration' do
     it 'with email and password' do
       visit root_path
@@ -17,13 +17,41 @@ describe 'Account managesentt' do
       expect(page).to have_link('Sair')
     end
 
-    xit 'without valid field' do
+    it 'without valid field' do
+      visit new_user_registration_path
+      click_on 'Cadastre-se'
+      fill_in 'Email', with: ''
+      fill_in 'Senha', with: ''
+      fill_in 'Confirmação de Senha', with: ''
+      click_on 'Criar conta'
+
+      expect(page).to have_text('Cadastro de Usuário')
+      expect(page).to have_text('não pode ficar em branco', count: 2)
+
     end
 
-    xit 'password not match confirmation' do
+    it 'password not match confirmation' do
+      visit new_user_registration_path
+      click_on 'Cadastre-se'
+      fill_in 'Email', with: 'janedoe@codeplay.com'
+      fill_in 'Senha', with: '123456'
+      fill_in 'Confirmação de Senha', with: '654321'
+      click_on 'Criar conta'
+
+      expect(page).to have_text('não é igual a Senha')
     end
 
-    xit 'with email not unique' do
+    it 'with email not unique' do
+      User.create!(email: 'janedoe@codeplay.com', password: '123456')
+
+      visit new_user_registration_path
+      click_on 'Cadastre-se'
+      fill_in 'Email', with: 'janedoe@codeplay.com'
+      fill_in 'Senha', with: '123456'
+      fill_in 'Confirmação de Senha', with: '123456'
+      click_on 'Criar conta'
+
+      expect(page).to have_text('já está em uso')
     end
   end
 
@@ -47,9 +75,20 @@ describe 'Account managesentt' do
       expect(page).to have_link('Sair')
     end
 
-    xit 'without valid field' do
+    it 'without valid field' do
+      User.create!(email: 'janedoe@codeplay.com', password: '123456')
+
+      visit root_path
+      click_on 'Entrar'
+      fill_in 'Email', with: ''
+      fill_in 'Senha', with: ''
+      within 'form' do
+        click_on 'Entrar'
+      end
+
+      expect(page).to have_text('Email ou senha inválida')
     end
-  end
+   end
 
   context 'logout' do
     it 'successfully' do
@@ -65,6 +104,21 @@ describe 'Account managesentt' do
       expect(page).to have_link('Cadastre-se')
       expect(page).to have_link('Entrar')
       expect(page).to_not have_link('Sair')
+    end
+  end
+
+  context 'user forgot password' do
+    it 'receive reset email successfully' do
+      User.create!(email: 'janedoe@codeplay.com', password: '123456')
+
+      visit root_path
+      click_on 'Entrar'
+      click_on 'Esqueceu sua senha?'
+      fill_in 'Email', with: 'janedoe@codeplay.com'
+      #click_on 'Envie-me instruções de redefinição de senha'
+
+      
+      expect(page).to have_text('você receberá um e-mail com instruções para a troca da sua senha')
     end
   end
 end
