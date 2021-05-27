@@ -13,3 +13,18 @@ pt-BR:
     registrations:
       new:
         submit: 'Criar conta'
+        title: 'Cadastro de Usuário'
+        password: 'Senha'
+        characters_min: 'caracteres no mínimo'
+    sessions:
+      new:
+        submit: 'Entrar'
+        title: 'Entrar'
+        remember_me: 'Lembrar de mim'
+    shared:
+      links:
+        log_in: 'Entrar'
+        sign_up: 'Cadastre-se'
+        forgot: 'Esqueceu sua senha?'
+        
+      
