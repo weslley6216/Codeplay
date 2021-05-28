@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe Lesson do
+
+  it { should belong_to(:course) }
+  
   context 'validation' do
     it 'attributes cannot be blank' do
       lesson = Lesson.new
