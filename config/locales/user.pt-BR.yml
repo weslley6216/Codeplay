@@ -26,5 +26,17 @@ pt-BR:
         log_in: 'Entrar'
         sign_up: 'Cadastre-se'
         forgot: 'Esqueceu sua senha?'
+    passwords:
+      new:
+        title: 'Esqueceu sua Senha?'
+        forgot_password: 'Envie-me instruções de redefinição de senha'
+      edit:
+        title: 'Trocar Senha'
+        new_password: 'Nova Senha'
+        new_password_confirm: 'Confirmar Nova Senha'
+        change_my_password: 'Mudar Minha Senha'
+
+
+
         
       
