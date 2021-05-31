@@ -58,15 +58,15 @@ describe 'Account management' do
   context 'sign in' do
     it 'with email and password' do
       User.create!(email: 'janedoe@codeplay.com', password: '123456')
-
+      
       visit root_path
       click_on 'Entrar'
       fill_in 'Email', with: 'janedoe@codeplay.com'
       fill_in 'Senha', with: '123456'
-      within 'form' do
+      within 'div#login' do
         click_on 'Entrar'
       end
-
+      
       expect(page).to have_text('Login efetuado com sucesso')
       expect(page).to have_text('janedoe@codeplay.com')
       expect(current_path).to eq(root_path)
@@ -82,7 +82,7 @@ describe 'Account management' do
       click_on 'Entrar'
       fill_in 'Email', with: ''
       fill_in 'Senha', with: ''
-      within 'form' do
+      within 'div#login' do
         click_on 'Entrar'
       end
 
@@ -115,10 +115,24 @@ describe 'Account management' do
       click_on 'Entrar'
       click_on 'Esqueceu sua senha?'
       fill_in 'Email', with: 'janedoe@codeplay.com'
-      #click_on 'Envie-me instruções de redefinição de senha'
+      click_on 'Envie-me instruções de redefinição de senha'
 
-      
+      expect(current_path).to eq(new_user_session_path)
       expect(page).to have_text('você receberá um e-mail com instruções para a troca da sua senha')
+    end
+
+    it 'token email' do
+      user = User.create!(email: 'janedoe@codeplay.com', password: '123456')
+      token = user.send_reset_password_instructions
+
+      visit edit_user_password_path(reset_password_token: token)
+
+      fill_in 'Nova Senha', with: '12345678'
+      fill_in 'Confirmar Nova Senha', with: '12345678'
+      click_on 'Mudar Minha Senha'
+      expect(page).to have_content('Sua senha foi alterada com sucesso')
+      expect(current_path).to eq(root_path)
+
     end
   end
 end

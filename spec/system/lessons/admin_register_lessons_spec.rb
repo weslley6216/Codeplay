@@ -19,10 +19,10 @@ describe 'Admin registers lessons in a course' do
 
     fill_in 'Nome', with: 'Primeira aula'
     fill_in 'Conteúdo', with: 'Tipos primitivos'
-    fill_in 'Duração', with: '20 minutos'
+    fill_in 'Duração', with: 20
     click_on 'Cadastrar Aula'
     
-    expect(current_path).to eq(course_lessons_path(Lesson.last))
+    expect(current_path).to eq(course_lessons_path(course))
     expect(page).to have_content('Primeira aula')
     expect(page).to have_content('Tipos primitivos')
     expect(page).to have_content('20 minutos')

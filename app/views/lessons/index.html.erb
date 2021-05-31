@@ -3,9 +3,9 @@
   <%= t('messages.no_lesson') %>
 <% end%>
 
-<% @course.lessons.each do |lesson| %>
+<% @course.lessons.each_with_index do |lesson, index| %>
   <div class="card border-dark mb-3" style="max-width: 18rem;">
-    <dd class="card-header"><%= "#{lesson.model_name.human} #{lesson.id}" %></dd>
+    <dd class="card-header"><%= "#{lesson.model_name.human} #{index + 1}" %></dd>
     <div class="card-body text-dark">
       <dt><%= lesson.class.human_attribute_name(:name) %></dt>
       <dd><%= lesson.name %></dd>

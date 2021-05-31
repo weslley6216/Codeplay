@@ -14,7 +14,7 @@ describe 'Admin updates lessons' do
 
     fill_in 'Nome', with: 'Segunda aula'
     fill_in 'Conteúdo', with: 'Coleções'
-    fill_in 'Duração', with: '1 minuto'
+    fill_in 'Duração', with: 1
     
     click_on 'Atualizar'
 
