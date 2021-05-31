@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   
   resources :courses do
     resources :lessons
+
+    post 'enroll', on: :member
+    get 'my_enrolls', on: :collection
   end
   resources :instructors
 end

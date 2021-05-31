@@ -1,7 +1,9 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[edit update show destroy]
+  before_action :set_course, only: %i[edit update show destroy enroll]
+  #before_action :authenticate_user!, except: %i[index]
   
   def index
+    #@courses = Course.where('enrollment_deadline >= ?', Date.today)
     @courses = Course.all
   end
 
@@ -39,6 +41,15 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     redirect_to courses_path, notice: 'Curso removido com sucesso'
+  end
+
+  def enroll
+    current_user.enrollments.create(course: @course, price: @course.price)
+    redirect_to my_enrolls_courses_path, notice: 'Curso comprado com sucesso'
+  end
+
+  def my_enrolls
+    @enrollments = current_user.enrollments
   end
 
   private
