@@ -2,8 +2,11 @@
   <%= t('messages.no_instructor') %>
 <% end %>
 
+
 <% @instructors.each do |instructor| %>
-  <%= link_to instructor.name, instructor %>
+  <div class="card border-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header"><%= link_to instructor.name, instructor %></div>
+  </div>
 <% end %>
 
 <%= link_to t('links.back'), root_path %>

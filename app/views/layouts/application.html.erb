@@ -13,28 +13,57 @@
 
   <body>
 
-    <div class="container-fluid">
-      <ul class="nav justify-content-end">
-        <li class="nav-item">
-          <%= link_to t('links.home'), root_path %>
-          <%= image_tag("https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/2000px-Flag_of_Brazil.svg.png", size:"25x20") %> <a href=" <%= request.path %>?locale=pt-BR">Português Brasil</a>
-          <%= image_tag("https://bandeira.net/wp-content/uploads/2018/09/bandeira-dos-eua-estados-unidos-da-america.png", size:"25x20") %> <a href=" <%= request.path %>?locale=en">English</a>
-        </li>
-      </ul><br>
+  <div class="container-fluid">
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <%= image_tag("https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/2000px-Flag_of_Brazil.svg.png", size:"25x20") %> <a href=" <%= request.path %>?locale=pt-BR">Português Brasil</a>
+        <%= image_tag("https://bandeira.net/wp-content/uploads/2018/09/bandeira-dos-eua-estados-unidos-da-america.png", size:"25x20") %> <a href=" <%= request.path %>?locale=en">English</a>
+      </li>
+    </ul>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <%= link_to 'CodePlay', root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <% if user_signed_in? %>
+        
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= current_user.email %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </li> 
+          </ul>
+
+        <% else %>
+
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= link_to 'Cadastre-se', new_user_registration_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Entrar', new_user_session_path, class: 'nav-link' %>
+            </li> 
+          </ul>
+
+        <% end %>
+
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
 
       <% flash.each do |name, message| %>
         <%= content_tag :div, message, class: "alert alert-primary", role: 'alert' %>
       <% end %>
-
-    <nav>
-      <% if user_signed_in? %>
-        <%= current_user.email %>
-        <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Cadastre-se', new_user_registration_path %>
-        <%= link_to 'Entrar', new_user_session_path %>
-      <% end%>
-    </nav>
 
       <%= yield %>
     </div>

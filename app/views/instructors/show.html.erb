@@ -1,15 +1,16 @@
-<% if @instructor.profile_picture.attached? %>
-  <%= image_tag @instructor.profile_picture %>
-<% end %>
+<h2><%= @instructor.name %></h2>
 
-
-<h1><%= @instructor.name %></h1>
-
-<ul>
-  <p><%= @instructor.email %></p>
-  <p><%= @instructor.bio %></p>
-</ul>
-
+  <div class="card border-dark mb-3" style="max-width: 18rem;">
+    <div class="card-body text-dark">
+      <% if @instructor.profile_picture.attached? %>
+        <%= image_tag @instructor.profile_picture %>
+      <% end %>
+      <dt><%= @instructor.class.human_attribute_name(:email) %></dt>
+      <dd><%= @instructor.email %></dd>
+      <dt><%= @instructor.class.human_attribute_name(:bio) %></dt>
+      <dd><%= @instructor.bio %></dd>
+    </div>
+  </div>
 <%= link_to t('links.back'), instructors_path %>
 <%= link_to t('links.edit'), edit_instructor_path(@instructor) %>
 <%= link_to t('links.delete'), instructor_path(@instructor), method: :delete, data: { confirm: t('messages.confirm_delete') } %>
