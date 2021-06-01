@@ -8,9 +8,8 @@ describe 'Admin registers lessons in a course' do
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', instructor: instructor)
 
-    visit courses_path
+    visit admin_courses_path
     click_on 'Ruby'
-    click_on 'Ver Aulas'
     click_on 'Cadastrar Nova Aula'
 
     expect(page).to have_content('Cadastrando uma aula')
@@ -22,11 +21,11 @@ describe 'Admin registers lessons in a course' do
     fill_in 'Duração', with: 20
     click_on 'Cadastrar Aula'
     
-    expect(current_path).to eq(course_lessons_path(course))
+    expect(current_path).to eq(admin_course_lessons_path(course))
     expect(page).to have_content('Primeira aula')
     expect(page).to have_content('Tipos primitivos')
     expect(page).to have_content('20 minutos')
-    expect(page).to have_link('Voltar', href: course_path(course))
+    expect(page).to have_link('Voltar', href: admin_course_path(course))
     expect(page).to have_content('Aula cadastrada com sucesso!')
   end
 
@@ -37,7 +36,7 @@ describe 'Admin registers lessons in a course' do
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', instructor: instructor)
 
-    visit course_lessons_path(course)
+    visit admin_course_lessons_path(course)
     click_on 'Cadastrar Nova Aula'
 
     fill_in 'Nome', with: ''
@@ -56,7 +55,7 @@ describe 'Admin registers lessons in a course' do
                             enrollment_deadline: '22/12/2033', instructor: instructor)
     Lesson.create!(name: 'Primeira aula', content: 'Tipos primitivos', duration: 20, course: course)
 
-    visit course_lessons_path(course)
+    visit admin_course_lessons_path(course)
     click_on 'Cadastrar Nova Aula'
 
     fill_in 'Nome', with: 'Primeira aula'

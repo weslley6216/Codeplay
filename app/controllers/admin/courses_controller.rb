@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+class Admin::CoursesController < ApplicationController
   before_action :set_course, only: %i[edit update show destroy enroll]
   #before_action :authenticate_user!, except: %i[index]
   

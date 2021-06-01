@@ -2,7 +2,14 @@
   <h1 class="display-3">CodePlay</h1>
   <p class="lead"><%= t('messages.welcome') %></p>
   <hr class="my-4">
-  <%= link_to t('home.courses'), courses_path, class: 'btn btn-outline-dark btn-lg' %>
+  <%= link_to t('home.courses'), admin_courses_path, class: 'btn btn-outline-dark btn-lg' %>
   <%= link_to t('home.instructors'), instructors_path, class: 'btn btn-outline-dark btn-lg' %>
 </div>
 
+<h3>Cursos Disponíveis</h3>
+
+<% @courses.available.each do |course| %>
+  <%= link_to course.name, admin_course_path(course) %>
+  <p><%= course.description %></p>
+  <p><%= number_to_currency course.price %></p>
+<% end %>

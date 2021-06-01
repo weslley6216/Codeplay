@@ -9,7 +9,7 @@ describe 'Admin updates lessons' do
                             enrollment_deadline: '22/12/2033', instructor: instructor)
     lesson = Lesson.create!(name: 'Primeira aula', content: 'Tipos primitivos', duration: 20, course: course)
 
-    visit course_lessons_path(lesson)
+    visit admin_course_lessons_path(lesson)
     click_on 'Editar'
 
     fill_in 'Nome', with: 'Segunda aula'

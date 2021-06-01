@@ -13,13 +13,12 @@
     <dd><%= @course.instructor.name %></dd>
   </dl>
 
-  <% if user_signed_in? %>
+  <% if current_user&.courses&.exclude?(@course) %>
     <%= link_to 'Comprar', enroll_course_path, method: :post %>
   <% end %>
 
-  <% unless current_user&.courses&.include?(@course) %>
-    <%= link_to 'Comprar', enroll_course_path, method: :post %>
-    <p>Faça <%= link_to 'login', new_user_session_path %> para comprar este curso</p> 
+  <% unless user_signed_in? %>
+    <p>Faça <%= link_to 'login', new_user_session_path %> para comprar este curso</p>
   <% end %>
 
   <%= link_to t('links.edit'), edit_admin_course_path(@course) %>

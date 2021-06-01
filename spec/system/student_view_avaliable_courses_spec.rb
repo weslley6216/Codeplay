@@ -13,7 +13,7 @@ describe 'student view courses on homepage' do
                    code: 'HTMLBASIC', price: 15,
                    enrollment_deadline: 2.day.ago, instructor: instructor)
 
-    visit courses_path
+    visit root_path
     
     expect(page).to have_text('Ruby')
     expect(page).to have_text('Um curso de Ruby')
@@ -48,7 +48,7 @@ describe 'student view courses on homepage' do
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
                    enrollment_deadline: 1.month.from_now, instructor: instructor)
-    visit courses_path
+    visit root_path
     click_on 'Ruby'
 
     expect(page).not_to have_link 'Comprar'
@@ -69,14 +69,35 @@ describe 'student view courses on homepage' do
                    enrollment_deadline: 1.month.from_now, instructor: instructor)
 
     login_as user, scope: :user
-    visit courses_path
+    visit root_path
     click_on 'Ruby'
     click_on 'Comprar'
-
+    
     expect(page).to have_content('Curso comprado com sucesso')
     expect(current_path).to eq(my_enrolls_courses_path)
     expect(page).to have_content('Ruby')
+    expect(page).to have_content('R$ 10,00')
     expect(page).to_not have_content('Elixir')
+    expect(page).to_not have_content('R$ 20,00')
 
+  end
+
+  it 'and cannot buy a course twice' do
+    user = User.create!(email: 'janedoe@codeplay', password: '123456')
+    instructor = Instructor.create!(name: 'Gustavo Guanabara',
+                                    email: 'guanabara@codeplay.com.br')
+    
+    available_course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                                      code: 'RUBYBASIC', price: 10,
+                                      enrollment_deadline: 1.month.from_now, instructor: instructor)
+    Lesson.create!(name: 'Primeira aula', content: 'Tipos primitivos', duration: 20, course: available_course)
+    Enrollment.create!(user: user, course: available_course)
+
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Ruby'
+
+    expect(page).to_not have_link 'Comprar'
+    expect(page).to have_link 'Primeira aula'
   end
 end

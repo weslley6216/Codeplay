@@ -17,7 +17,7 @@ describe 'Admin registers courses' do
     select "#{instructor.name} - #{instructor.email}", from: 'Professor'
     click_on 'Cadastrar Curso'
 
-    expect(current_path).to eq(course_path(Course.last))
+    expect(current_path).to eq(admin_course_path(Course.last))
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('Um curso de Ruby on Rails')
     expect(page).to have_content('RUBYONRAILS')

@@ -13,12 +13,9 @@ describe 'Admin view lessons from a course and return to the previous page' do
     visit root_path
     click_on 'Cursos'
     click_on 'Ruby'
-    click_on 'Ver Aulas'
 
     expect(page).to have_content(lesson.name)
-    expect(page).to have_content(lesson.content)
     expect(page).to have_content(lesson.duration)
-    expect(page).to have_link('Voltar', href: course_path(course))
   end
 
   it 'and no lessons is available' do
@@ -33,7 +30,6 @@ describe 'Admin view lessons from a course and return to the previous page' do
     visit root_path
     click_on 'Cursos'
     click_on 'Ruby'
-    click_on 'Ver Aulas'
     expect(page).to have_content('Nenhuma aula disponível para este curso!')
   end
 end
