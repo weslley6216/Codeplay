@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :admins
   root 'home#index'
+  devise_for :admins
   devise_for :users
 
   namespace :admin do
+    resources :instructors
     resources :courses do
       resources :lessons
     end
-    resources :instructors
   end
   
   resources :courses do
