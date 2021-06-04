@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'Admin registers instructors' do
   it 'successfully' do
+
+    login_admin
     visit root_path
     click_on 'Professores'
     click_on 'Cadastrar Professor'
@@ -12,7 +14,7 @@ describe 'Admin registers instructors' do
     attach_file 'Foto de Perfil', Rails.root.join('spec/fixtures/foto_perfil.jpeg')
     click_on 'Cadastrar Professor'
 
-    expect(current_path).to eq(instructor_path(Instructor.last))
+    expect(current_path).to eq(admin_instructor_path(Instructor.last))
     expect(page).to have_content('Gustavo Guanabara')
     expect(page).to have_content('guanabara@codeplay.com')
     expect(page).to have_content('Professor por vocação')
@@ -23,8 +25,9 @@ describe 'Admin registers instructors' do
   it 'and attributes cannot be blank' do
     Instructor.create!(name: 'Gustavo Guanabara', email: 'guanabara@codeplay.com',
                        bio: 'Professor por vocação')
-    visit root_path
-    click_on 'Professores'
+    login_admin
+    visit admin_instructors_path
+
     click_on 'Cadastrar Professor'
     fill_in 'Nome', with: ''
     fill_in 'Email', with: ''
@@ -39,8 +42,8 @@ describe 'Admin registers instructors' do
     Instructor.create!(name: 'Gustavo Guanabara', email: 'guanabara@codeplay.com',
                        bio: 'Professor por vocação')
 
-    visit root_path
-    click_on 'Professores'
+    login_admin
+    visit admin_instructors_path
     click_on 'Cadastrar Professor'
     fill_in 'Email', with: 'guanabara@codeplay.com'
     click_on 'Cadastrar Professor'

@@ -13,6 +13,7 @@ describe 'Admin view courses' do
                    code: 'RUBYONRAILS', price: 20,
                    enrollment_deadline: '20/12/2033', instructor: instructor)
 
+    login_admin
     visit root_path
     click_on 'Cursos'
     
@@ -36,8 +37,8 @@ describe 'Admin view courses' do
                    code: 'RUBYONRAILS', price: 20,
                    enrollment_deadline: '20/12/2033', instructor: instructor)
 
-    visit root_path
-    click_on 'Cursos'
+    login_admin
+    visit admin_courses_path
     click_on 'Ruby on Rails'
 
     expect(page).to have_content('Ruby on Rails')
@@ -48,8 +49,8 @@ describe 'Admin view courses' do
   end
 
   it 'and no course is available' do
-    visit root_path
-    click_on 'Cursos'
+    login_admin
+    visit admin_courses_path
 
     expect(page).to have_content('Nenhum curso disponível')
   end
@@ -63,8 +64,8 @@ describe 'Admin view courses' do
                    enrollment_deadline: '22/12/2033',
                    instructor: instructor)
 
-    visit root_path
-    click_on 'Cursos'
+    login_admin
+    visit admin_courses_path
     click_on 'Voltar'
 
     expect(current_path).to eq root_path
@@ -77,8 +78,8 @@ describe 'Admin view courses' do
                    code: 'RUBYBASIC', price: 10,
                    enrollment_deadline: '22/12/2033', instructor: instructor)
 
-    visit root_path
-    click_on 'Cursos'
+    login_admin
+    visit admin_courses_path
     click_on 'Ruby'
     click_on 'Voltar'
 

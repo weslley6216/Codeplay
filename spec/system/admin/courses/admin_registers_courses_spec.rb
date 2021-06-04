@@ -5,8 +5,8 @@ describe 'Admin registers courses' do
     instructor = Instructor.create!(name: 'Gustavo Guanabara',
                                     email: 'guanabara@codeplay.com')
 
-    visit root_path
-    click_on 'Cursos'
+    login_admin
+    visit admin_courses_path
     click_on 'Criar Curso'
 
     fill_in 'Nome', with: 'Ruby on Rails'
@@ -34,8 +34,8 @@ describe 'Admin registers courses' do
                    code: 'RUBYBASIC', price: 10,
                    enrollment_deadline: '22/12/2033', instructor: instructor)
 
-    visit root_path
-    click_on 'Cursos'
+    login_admin
+    visit admin_courses_path
     click_on 'Criar Curso'
     fill_in 'Nome', with: ''
     fill_in 'Descrição', with: ''
@@ -55,8 +55,8 @@ describe 'Admin registers courses' do
                    code: 'RUBYBASIC', price: 10,
                    enrollment_deadline: '22/12/2033', instructor: instructor)
 
-    visit root_path
-    click_on 'Cursos'
+    login_admin
+    visit admin_courses_path
     click_on 'Criar Curso'
     fill_in 'Código', with: 'RUBYBASIC'
     click_on 'Cadastrar Curso'

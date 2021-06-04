@@ -6,6 +6,7 @@ describe 'Admin updates instructor registration' do
                                    bio: 'Professor por vocação') 
     instructor.profile_picture.attach(io: File.open('spec/fixtures/foto_perfil.jpeg'),
                                       filename: 'foto_perfil.jpeg')
+    login_admin
     visit root_path
     click_on 'Professores'
     click_on 'GustavoGuanabara'
@@ -29,8 +30,9 @@ describe 'Admin updates instructor registration' do
                                    bio: 'Professor por vocação')
     instructor.profile_picture.attach(io: File.open('spec/fixtures/foto_perfil.jpeg'),
                                       filename: 'foto_perfil.jpeg')
-    visit root_path
-    click_on 'Professores'
+    
+    login_admin
+    visit admin_instructors_path
     click_on 'Cadastrar Professor'
     fill_in 'Nome', with: ''
     fill_in 'Email', with: ''
@@ -47,8 +49,8 @@ describe 'Admin updates instructor registration' do
     instructor.profile_picture.attach(io: File.open('spec/fixtures/foto_perfil.jpeg'),
                                       filename: 'foto_perfil.jpeg')
 
-    visit root_path
-    click_on 'Professores'
+    login_admin
+    visit admin_instructors_path
     click_on 'Cadastrar Professor'
     fill_in 'Email', with: 'guanabara@codeplay.com'
     attach_file 'Foto de Perfil', Rails.root.join('spec/fixtures/foto_perfil.jpeg')

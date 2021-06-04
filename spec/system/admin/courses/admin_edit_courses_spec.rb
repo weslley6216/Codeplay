@@ -7,7 +7,8 @@ describe 'Admin updates courses' do
     course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', instructor: instructor)
-
+    
+    login_admin
     visit admin_course_path(course)
     click_on 'Editar'
 
@@ -35,7 +36,7 @@ describe 'Admin updates courses' do
     course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', instructor: instructor)
-
+    login_admin
     visit admin_course_path(course)
     click_on 'Editar'
 

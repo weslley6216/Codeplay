@@ -9,8 +9,11 @@ describe 'Admin updates lessons' do
                             enrollment_deadline: '22/12/2033', instructor: instructor)
     lesson = Lesson.create!(name: 'Primeira aula', content: 'Tipos primitivos', duration: 20, course: course)
 
-    visit admin_course_lessons_path(lesson)
-    click_on 'Editar'
+    login_admin
+    visit admin_course_path(course)
+    within 'div#lessons' do
+      click_on 'Editar'
+    end
 
     fill_in 'Nome', with: 'Segunda aula'
     fill_in 'Conteúdo', with: 'Coleções'
@@ -19,9 +22,9 @@ describe 'Admin updates lessons' do
     click_on 'Atualizar'
 
     expect(page).to have_text('Segunda aula')
-    expect(page).to have_text('Coleções')
     expect(page).to have_text('1 minuto')
     expect(page).to have_text('Aula atualizada com sucesso!')
+    expect(current_path).to eq(admin_course_path(course))
 
   end
 end

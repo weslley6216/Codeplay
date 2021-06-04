@@ -10,6 +10,7 @@ describe 'Admin view lessons from a course and return to the previous page' do
                             enrollment_deadline: '22/12/2033', instructor: instructor)
     lesson = Lesson.create!(name: 'Primeira aula', content: 'Tipos primitivos', duration: 20, course: course)
 
+    login_admin
     visit root_path
     click_on 'Cursos'
     click_on 'Ruby'
@@ -27,8 +28,8 @@ describe 'Admin view lessons from a course and return to the previous page' do
                    code: 'RUBYBASIC', price: 10,
                    enrollment_deadline: '22/12/2033', instructor: instructor)
 
-    visit root_path
-    click_on 'Cursos'
+    login_admin
+    visit admin_courses_path
     click_on 'Ruby'
     expect(page).to have_content('Nenhuma aula disponível para este curso!')
   end

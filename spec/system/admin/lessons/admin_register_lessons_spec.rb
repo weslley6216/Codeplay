@@ -7,25 +7,20 @@ describe 'Admin registers lessons in a course' do
     course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', instructor: instructor)
-
+    login_admin
     visit admin_courses_path
     click_on 'Ruby'
     click_on 'Cadastrar Nova Aula'
-
-    expect(page).to have_content('Cadastrando uma aula')
-    expect(page).to have_content('Nome')
-    expect(page).to have_content('Conteúdo')
 
     fill_in 'Nome', with: 'Primeira aula'
     fill_in 'Conteúdo', with: 'Tipos primitivos'
     fill_in 'Duração', with: 20
     click_on 'Cadastrar Aula'
     
-    expect(current_path).to eq(admin_course_lessons_path(course))
+    expect(current_path).to eq(admin_course_path(course))
     expect(page).to have_content('Primeira aula')
-    expect(page).to have_content('Tipos primitivos')
     expect(page).to have_content('20 minutos')
-    expect(page).to have_link('Voltar', href: admin_course_path(course))
+    expect(page).to have_link('Voltar', href: admin_courses_path)
     expect(page).to have_content('Aula cadastrada com sucesso!')
   end
 
@@ -35,8 +30,8 @@ describe 'Admin registers lessons in a course' do
     course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', instructor: instructor)
-
-    visit admin_course_lessons_path(course)
+    login_admin
+    visit admin_course_path(course)
     click_on 'Cadastrar Nova Aula'
 
     fill_in 'Nome', with: ''
@@ -55,7 +50,8 @@ describe 'Admin registers lessons in a course' do
                             enrollment_deadline: '22/12/2033', instructor: instructor)
     Lesson.create!(name: 'Primeira aula', content: 'Tipos primitivos', duration: 20, course: course)
 
-    visit admin_course_lessons_path(course)
+    login_admin
+    visit admin_course_path(course)
     click_on 'Cadastrar Nova Aula'
 
     fill_in 'Nome', with: 'Primeira aula'
