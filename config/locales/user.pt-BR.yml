@@ -7,6 +7,7 @@ pt-BR:
         other: 'Usuários(as)'
     attributes:
       user:
+        email: 'Email'
         password: 'Senha'
         password_confirmation: 'Confirmação de Senha'
   users:
@@ -16,6 +17,7 @@ pt-BR:
         title: 'Cadastro de Usuário'
         password: 'Senha'
         characters_min: 'caracteres no mínimo'
+        email: 'Email'
     sessions:
       new:
         submit: 'Entrar'
@@ -35,6 +37,7 @@ pt-BR:
         new_password: 'Nova Senha'
         new_password_confirm: 'Confirmar Nova Senha'
         change_my_password: 'Mudar Minha Senha'
+        characters_min: 'caracteres no mínimo'
 
 
 

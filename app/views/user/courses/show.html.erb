@@ -1,0 +1,45 @@
+<h1>Curso de <%= @course.name %></h1>
+<div id="course"> 
+  <dl>
+    <dt><%= @course.class.human_attribute_name(:description) %></dt>
+    <dd><%= @course.description %></dd>
+    <dt><%= @course.class.human_attribute_name(:code) %></dt>
+    <dd><%= @course.code %></dd>
+    <dt><%= @course.class.human_attribute_name(:price) %></dt>
+    <dd><%= number_to_currency @course.price %></dd>
+    <dt><%= @course.class.human_attribute_name(:enrollment_deadline) %></dt>
+    <dd><%= l(@course.enrollment_deadline) %></dd>
+    <dt><%= @course.class.human_attribute_name(:instructor_id) %></dt>
+    <dd><%= @course.instructor.name %></dd>
+  </dl>
+
+  <% if current_user&.courses&.exclude?(@course) %>
+    <%= link_to 'Comprar', enroll_user_course_path, method: :post %>
+  <% end %>
+
+  <% unless user_signed_in? %>
+    <p>Faça <%= link_to 'login', new_user_session_path %> para comprar este curso</p>
+  <% end %>
+
+  <%= link_to t('links.back'), user_courses_path %>
+</div>
+
+<div id="lessons">
+
+<% if @course.lessons.empty? %>
+  <%= t('messages.no_lesson') %>
+<% end%>
+
+<% @course.lessons.each_with_index do |lesson, index| %>
+  <div class="card border-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header"><%= "#{lesson.model_name.human} #{index + 1}" %></div>
+      <div class="card-body text-dark">
+      <%= link_to_if current_user&.courses&.include?(@course), lesson.name, [:user, @course, lesson] do %>
+        <%= lesson.name %>
+      <% end %>
+      <p><%= t('lesson.duration', count: lesson.duration) %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+

@@ -18,8 +18,28 @@
 
 <h3>Cursos Disponíveis</h3>
 
-<% @courses.available.each do |course| %>
-  <%= link_to course.name, course_path(course) %>
-  <p><%= course.description %></p>
-  <p><%= number_to_currency course.price %></p>
-<% end %> 
+<% if user_signed_in? %>
+
+  <% @courses.available.each do |course| %>
+    <%= link_to course.name, user_course_path(course) %>
+    <p><%= course.description %></p>
+    <p><%= number_to_currency course.price %></p>
+  <% end %>
+
+<% elsif  admin_signed_in? %>
+
+  <% @courses.available.each do |course| %>
+    <%= link_to course.name, admin_course_path(course) %>
+    <p><%= course.description %></p>
+    <p><%= number_to_currency course.price %></p>
+  <% end %>
+
+<% else %>
+
+  <% @courses.available.each do |course| %>
+    <%= link_to course.name, admin_course_path(course) %>
+    <p><%= course.description %></p>
+    <p><%= number_to_currency course.price %></p>
+  <% end %>
+
+<% end %>

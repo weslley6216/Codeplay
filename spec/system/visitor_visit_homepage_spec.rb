@@ -19,7 +19,6 @@ describe 'Visitor visit homepage' do
                             code: 'RUBYBASIC', price: 10,
                             enrollment_deadline: '22/12/2033', instructor: instructor)
 
-    login_user
     visit course_path(course)
 
     expect(page).to have_content('Ruby')
@@ -30,6 +29,19 @@ describe 'Visitor visit homepage' do
     expect(page).to have_content('Gustavo Guanabara')
     expect(page).to have_text('Faça login para comprar este curso')
     expect(page).to have_link('Voltar', href: root_path)
-
   end
+
+  it 'must be signed in to enroll' do
+    instructor = Instructor.create!(name: 'Gustavo Guanabara', 
+                                    email: 'guanabara@codeplay.com')
+    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                   code: 'RUBYBASIC', price: 10,
+                   enrollment_deadline: 1.month.from_now, instructor: instructor)
+    visit root_path
+    click_on 'Ruby'
+
+    expect(page).not_to have_link 'Comprar'
+    expect(page).to have_link 'Entrar', href: new_user_session_path
+  end
+
 end

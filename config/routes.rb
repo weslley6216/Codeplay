@@ -6,15 +6,19 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :instructors
     resources :courses do
-      resources :lessons
+      resources :lessons, except: %i[index]
     end
   end
-  
-  resources :courses do
-    resources :lessons
 
-    post 'enroll', on: :member
-    get 'my_enrolls', on: :collection
+  namespace :user do
+    resources :courses, only: %i[index show] do
+      resources :lessons, only: %i[show]
+
+      post 'enroll', on: :member
+      get 'my_enrolls', on: :collection
+    end
   end
-  resources :instructors
+
+  resources :courses, only: %i[show]
+
 end

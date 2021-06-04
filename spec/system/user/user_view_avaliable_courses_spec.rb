@@ -1,6 +1,18 @@
 require 'rails_helper'
 
-describe 'student view courses on homepage' do
+describe 'logged in user' do
+  it 'visit home page' do
+    user = User.create!(email: 'janedoe@codeplay.com', password: '123456')
+
+    login_as user, scope: :user
+    visit root_path
+
+    expect(page).to have_content(user.email)
+    expect(page).to have_link('Cursos')
+    expect(page).to have_link('Meus Cursos')
+    expect(page).to have_link('Sair')
+  end
+
   it 'courses with enrollment still avaiable' do
     instructor = Instructor.create!(name: 'Gustavo Guanabara',
                                     email: 'guanabara@codeplay.com')
@@ -13,6 +25,7 @@ describe 'student view courses on homepage' do
                    code: 'HTMLBASIC', price: 15,
                    enrollment_deadline: 2.day.ago, instructor: instructor)
 
+    login_user
     visit root_path
     
     expect(page).to have_text('Ruby')
@@ -32,7 +45,7 @@ describe 'student view courses on homepage' do
                    enrollment_deadline: 1.month.from_now, instructor: instructor)
 
     login_as user, scope: :user
-    visit courses_path
+    visit user_courses_path
     click_on 'Ruby'
 
     expect(page).to have_link 'Comprar'
@@ -42,39 +55,23 @@ describe 'student view courses on homepage' do
     # curso com data limite ultrapassada mas com usuario logado não deve exibir o link
   end
 
-  it 'must be signed in to enroll' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara', 
-                                    email: 'guanabara@codeplay.com')
-    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                   code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: 1.month.from_now, instructor: instructor)
-    visit root_path
-    click_on 'Ruby'
-
-    expect(page).not_to have_link 'Comprar'
-    expect(page).to have_content 'Faça login para comprar este curso'
-    expect(page).to have_link 'Entrar', href: new_user_session_path
-  end
-
   it 'and buy a course' do 
-    user = User.create!(email: 'janedoe@codeplay.com', password: '123456')
     instructor = Instructor.create!(name: 'Gustavo Guanabara', 
                                     email: 'guanabara@codeplay.com')
-    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                   code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: 1.month.from_now, instructor: instructor)
+    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                            code: 'RUBYBASIC', price: 10,
+                            enrollment_deadline: 1.month.from_now, instructor: instructor)
     
-    Course.create!(name: 'Elixir', description: 'Um curso de Elixir',
-                   code: 'ELIXIRBASIC', price: 20,
-                   enrollment_deadline: 1.month.from_now, instructor: instructor)
+    other_course = Course.create!(name: 'Elixir', description: 'Um curso de Elixir',
+                                  code: 'ELIXIRBASIC', price: 20,
+                                  enrollment_deadline: 1.month.from_now, instructor: instructor)
 
-    login_as user, scope: :user
-    visit root_path
-    click_on 'Ruby'
+    login_user
+    visit user_course_path(course)
     click_on 'Comprar'
     
     expect(page).to have_content('Curso comprado com sucesso')
-    expect(current_path).to eq(my_enrolls_courses_path)
+    expect(current_path).to eq(my_enrolls_user_courses_path)
     expect(page).to have_content('Ruby')
     expect(page).to have_content('R$ 10,00')
     expect(page).to_not have_content('Elixir')
@@ -86,7 +83,7 @@ describe 'student view courses on homepage' do
     user = User.create!(email: 'janedoe@codeplay', password: '123456')
     instructor = Instructor.create!(name: 'Gustavo Guanabara',
                                     email: 'guanabara@codeplay.com.br')
-    
+
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                                       code: 'RUBYBASIC', price: 10,
                                       enrollment_deadline: 1.month.from_now, instructor: instructor)

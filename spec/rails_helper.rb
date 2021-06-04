@@ -38,6 +38,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.before(type: :system) do
+    config.include LoginMacros
     driven_by :rack_test
   end
 

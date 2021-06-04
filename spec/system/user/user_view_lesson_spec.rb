@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-describe 'Student view lesson' do
+describe 'User view lesson' do
   xit 'successfully' do
   end
 
   it 'without enrollment cannot view lesson link' do
-    user = User.create!(email: 'jane@test.com.br', password: '123456')
     instructor = Instructor.create!(name: 'Gustavo Guanabara',
                                     email: 'janedoe@codeplay.com')
     course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
@@ -14,8 +13,8 @@ describe 'Student view lesson' do
     Lesson.create!(name: 'Classes e Objetos', course: course, duration: 20,
                    content: 'Uma aula sobre Ruby')
 
-    login_as user, scope: :user
-    visit admin_courses_path
+    login_user
+    visit user_courses_path
     click_on 'Ruby'
 
     expect(page).to_not have_link 'Classes e Objetos'
@@ -31,13 +30,12 @@ describe 'Student view lesson' do
     lesson = Lesson.create!(name: 'Classes e Objetos', course: course, duration: 20,
                             content: 'Uma aula sobre Ruby')
 
-    visit admin_course_lesson_path(course, lesson)
+    visit user_course_lesson_path(course, lesson)
 
     expect(current_path).to eq(new_user_session_path)
   end
 
   it 'without enrollment cannot view lesson' do
-    user = User.create!(email: 'janedoe@codeplay.com', password: '123456')
     instructor = Instructor.create!(name: 'Gustavo Guanabara',
                                     email: 'guanabara@codeplay.com.br')
     course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
@@ -46,10 +44,10 @@ describe 'Student view lesson' do
     lesson = Lesson.create!(name: 'Classes e Objetos', course: course, duration: 20,
                             content: 'Uma aula sobre Ruby')
 
-    login_as user, scope: :user
-    visit admin_course_lesson_path(course, lesson)
+    login_user
+    visit user_course_lesson_path(course, lesson)
 
-    expect(current_path).to eq(admin_course_path(course))
+    expect(current_path).to eq(user_course_path(course))
     expect(page).to have_link 'Comprar'
   end
 end

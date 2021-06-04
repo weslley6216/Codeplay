@@ -1,4 +1,4 @@
-<%= link_to 'Voltar', @lesson.course %>
+<%= link_to 'Voltar', [:user, @lesson.course] %>
 
 <h3><%= @lesson.name %></h3>
 <p><small><%= t 'lesson.duration', count: @lesson.duration %></small></p>
