@@ -1,0 +1,13 @@
+<% if @instructors.empty? %>
+  <%= t('messages.no_instructor') %>
+<% end %>
+
+
+<% @instructors.each do |instructor| %>
+  <div class="card border-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header"><%= link_to instructor.name, admin_instructor_path(instructor) %></div>
+  </div>
+<% end %>
+
+<%= link_to t('links.back'), root_path %>
+<%= link_to t('links.register_new_instructor'), new_admin_instructor_path %>

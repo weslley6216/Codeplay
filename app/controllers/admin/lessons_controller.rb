@@ -1,8 +1,6 @@
-class Admin::LessonsController < ApplicationController
-  before_action :authenticate_user!, only: %i[show]
-  before_action :set_course, only: %i[index new create edit update destroy]
+class Admin::LessonsController < AdminController
+  before_action :set_course
   before_action :set_lesson, only: %i[show edit update destroy]
-  before_action :user_has_enrollment?, only: %i[show]
 
   def show
   end
@@ -14,7 +12,7 @@ class Admin::LessonsController < ApplicationController
   def create
     @lesson = @course.lessons.build(lesson_params)
     if @lesson.save
-      redirect_to admin_course_lessons_path(@course), notice: t('messages.lesson_created')
+      redirect_to admin_course_path(@course), notice: t('messages.lesson_created')
     else
       render :new
     end
@@ -25,7 +23,7 @@ class Admin::LessonsController < ApplicationController
 
   def update
     if @lesson.update(lesson_params)
-      redirect_to admin_course_lessons_path(@course), notice: t('messages.lesson_updated')
+      redirect_to admin_course_path(@course), notice: t('messages.lesson_updated')
     else
       render :edit
     end
@@ -33,17 +31,13 @@ class Admin::LessonsController < ApplicationController
 
   def destroy
     @lesson.destroy
-    redirect_to admin_course_lessons_path(@course), notice: t('messages.lesson_removed')
+    redirect_to admin_course_path(@course), notice: t('messages.lesson_removed')
   end
 
   private
   
   def lesson_params
     params.require(:lesson).permit(:name, :content, :duration)
-  end
-
-  def user_has_enrollment?
-    redirect_to [:admin, @lesson.course] unless current_user.courses.include?(@lesson.course)
   end
 
   def set_course

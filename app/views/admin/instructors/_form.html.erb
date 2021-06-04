@@ -1,0 +1,20 @@
+<% instructor.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+<% end %>
+
+<%= form_with model: [:admin, instructor] do |form| %>
+    <p><%= form.label :name %><br>
+    <p><%= form.text_field :name %></p>
+
+    <p><%= form.label :email %></p>
+    <p><%= form.text_field :email %></p>
+
+    <p><%= form.label :bio %></p>
+    <p><%= form.text_field :bio %></p>
+
+    <p><%= form.label :profile_picture %></p>
+    <p><%= form.file_field :profile_picture %></p>
+
+    <p><%= form.submit %></p>
+    
+<% end%> 
