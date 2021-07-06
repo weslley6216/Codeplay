@@ -5,13 +5,9 @@ describe 'User view lesson' do
   end
 
   it 'without enrollment cannot view lesson link' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'janedoe@codeplay.com')
-    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                            code: 'RUBYBASIC', price: 10,
-                            enrollment_deadline: 1.month.from_now, instructor: instructor)
-    Lesson.create!(name: 'Classes e Objetos', course: course, duration: 20,
-                   content: 'Uma aula sobre Ruby')
+    course = create(:course)
+    create(:lesson, name: 'Classes e Objetos', course: course, duration: 20,
+                    content: 'Uma aula sobre Ruby')
 
     login_user
     visit user_courses_path
@@ -22,13 +18,8 @@ describe 'User view lesson' do
   end
 
   it 'without login cannot view lesson' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com.br')
-    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                            code: 'RUBYBASIC', price: 10,
-                            enrollment_deadline: 1.month.from_now, instructor: instructor)
-    lesson = Lesson.create!(name: 'Classes e Objetos', course: course, duration: 20,
-                            content: 'Uma aula sobre Ruby')
+    course = create(:course)
+    lesson = create(:lesson)
 
     visit user_course_lesson_path(course, lesson)
 
@@ -36,13 +27,8 @@ describe 'User view lesson' do
   end
 
   it 'without enrollment cannot view lesson' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com.br')
-    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                            code: 'RUBYBASIC', price: 10,
-                            enrollment_deadline: 1.month.from_now, instructor: instructor)
-    lesson = Lesson.create!(name: 'Classes e Objetos', course: course, duration: 20,
-                            content: 'Uma aula sobre Ruby')
+    course = create(:course)
+    lesson = create(:lesson, course: course)
 
     login_user
     visit user_course_lesson_path(course, lesson)
