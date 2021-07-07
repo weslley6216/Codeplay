@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 describe Lesson do
-  
   it { should belong_to(:course) }
-  it { should validate_numericality_of(:duration).only_integer.is_greater_than(0)}
-  
+  it { should validate_numericality_of(:duration).only_integer.is_greater_than(0) }
+
   context 'validation' do
     it 'attributes cannot be blank' do
       lesson = Lesson.new
@@ -21,7 +20,7 @@ describe Lesson do
                               code: 'RUBYBASIC', price: 10,
                               enrollment_deadline: '22/12/2033', instructor: instructor)
       Lesson.create!(name: 'Primeira aula', content: 'Tipos Primitivos', duration: 20, course: course)
-      
+
       lesson = Lesson.new(name: 'Primeira aula')
 
       lesson.valid?
@@ -42,7 +41,6 @@ describe Lesson do
       lesson.valid?
 
       expect(lesson.errors[:duration]).to include('deve ser maior que 0')
-
-      end
     end
   end
+end

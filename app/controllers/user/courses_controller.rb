@@ -1,12 +1,11 @@
 class User::CoursesController < UsersController
-  before_action :set_course, only: %i[edit update show destroy enroll]
-  
+  before_action :set_course, only: %i[show enroll]
+
   def index
     @courses = Course.all
   end
 
-  def show
-  end
+  def show; end
 
   def enroll
     current_user.enrollments.create(course: @course, price: @course.price)
@@ -26,5 +25,4 @@ class User::CoursesController < UsersController
   def course_params
     params.require(:course).permit(:name, :description, :code, :price, :enrollment_deadline, :instructor_id)
   end
-
 end

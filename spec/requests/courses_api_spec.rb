@@ -13,16 +13,15 @@ describe 'Courses API' do
                      description: 'Um curso de Ruby on Rails',
                      code: 'RUBYONRAILS', price: 20,
                      enrollment_deadline: '20/12/2033', instructor: instructor)
-      
+
       get '/api/v1/courses'
 
       expect(response).to have_http_status(200)
       expect(response.content_type).to include('application/json')
-      parsed_body = JSON.parse(response.body)  
+      parsed_body = JSON.parse(response.body)
       expect(parsed_body.count).to eq(Course.count)
       expect(parsed_body[0]['name']).to eq('Ruby')
       expect(parsed_body[1]['name']).to eq('Ruby on Rails')
-
     end
 
     it 'returns no course' do
@@ -32,7 +31,6 @@ describe 'Courses API' do
       expect(response).to have_http_status(200)
       expect(response.content_type).to include('application/json')
       expect(parsed_body).to be_empty
-
     end
   end
 end

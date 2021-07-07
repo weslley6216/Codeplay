@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 describe 'User view lesson' do
-  xit 'successfully' do
-  end
+  xit 'successfully'
 
   it 'without enrollment cannot view lesson link' do
     course = create(:course)

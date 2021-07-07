@@ -37,7 +37,7 @@ describe 'Admin registers courses' do
     fill_in 'Código', with: ''
     fill_in 'Preço', with: ''
     fill_in 'Data limite de matrícula', with: ''
-    #attach_file 'Banner', Rails.root.join('spec/fixtures/course.jpg')
+    # attach_file 'Banner', Rails.root.join('spec/fixtures/course.jpg')
     click_on 'Cadastrar Curso'
 
     expect(page).to have_content('não pode ficar em branco', count: 3)

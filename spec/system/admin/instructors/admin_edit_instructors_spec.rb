@@ -23,12 +23,11 @@ describe 'Admin updates instructor registration' do
     expect(page).to have_css('img[src*="foto_perfil.jpeg"]')
   end
 
-
   it 'and attributes cannot be blank' do
     instructor = create(:instructor)
     instructor.profile_picture.attach(io: File.open('spec/fixtures/foto_perfil.jpeg'),
                                       filename: 'foto_perfil.jpeg')
-    
+
     login_admin
     visit admin_instructors_path
     click_on 'Cadastrar Professor'
@@ -38,7 +37,7 @@ describe 'Admin updates instructor registration' do
     attach_file 'Foto de Perfil', Rails.root.join('spec/fixtures/foto_perfil.jpeg')
     click_on 'Cadastrar Professor'
 
-  expect(page).to have_content('não pode ficar em branco', count: 2)
+    expect(page).to have_content('não pode ficar em branco', count: 2)
   end
 
   it 'and email must be unique' do

@@ -13,7 +13,7 @@ describe 'Admin registers lessons in a course' do
     fill_in 'Conteúdo', with: 'Tipos primitivos'
     fill_in 'Duração', with: 20
     click_on 'Cadastrar Aula'
-    
+
     expect(current_path).to eq(admin_course_path(course))
     expect(page).to have_content('Primeira aula')
     expect(page).to have_content('20 minutos')

@@ -3,15 +3,14 @@ require 'rails_helper'
 describe 'User account management' do
   context 'registration' do
     it 'with email and password' do
-      
       visit root_path
       click_on 'Cadastre-se'
-      
+
       fill_in 'Email', with: 'user@user.com'
       fill_in 'Senha', with: '123456'
       fill_in 'Confirmação de Senha', with: '123456'
       click_on 'Criar conta'
-      
+
       expect(page).to have_text('Login efetuado com sucesso')
       expect(page).to have_text('user@user.com')
       expect(current_path).to eq(root_path)
@@ -29,7 +28,6 @@ describe 'User account management' do
 
       expect(page).to have_text('Cadastro de Usuário')
       expect(page).to have_text('não pode ficar em branco', count: 2)
-
     end
 
     it 'password not match confirmation' do
@@ -94,7 +92,6 @@ describe 'User account management' do
 
   context 'logout' do
     it 'successfully' do
-
       login_user
       visit root_path
       click_on 'Sair'
@@ -132,7 +129,6 @@ describe 'User account management' do
       click_on 'Mudar Minha Senha'
       expect(page).to have_content('Sua senha foi alterada com sucesso')
       expect(current_path).to eq(root_path)
-
     end
   end
 end

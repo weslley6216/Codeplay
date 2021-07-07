@@ -2,8 +2,7 @@ class Admin::LessonsController < AdminController
   before_action :set_course
   before_action :set_lesson, only: %i[show edit update destroy]
 
-  def show
-  end
+  def show; end
 
   def new
     @lesson = Lesson.new
@@ -18,8 +17,7 @@ class Admin::LessonsController < AdminController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @lesson.update(lesson_params)
@@ -35,7 +33,7 @@ class Admin::LessonsController < AdminController
   end
 
   private
-  
+
   def lesson_params
     params.require(:lesson).permit(:name, :content, :duration)
   end

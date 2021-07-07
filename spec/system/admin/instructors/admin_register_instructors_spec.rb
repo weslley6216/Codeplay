@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'Admin registers instructors' do
   it 'successfully' do
-
     login_admin
     visit root_path
     click_on 'Professores'

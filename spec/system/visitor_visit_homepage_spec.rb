@@ -6,7 +6,7 @@ describe 'Visitor visit homepage' do
 
     expect(page).to have_css('h1', text: 'CodePlay')
     expect(page).to have_css('p', text: 'Boas vindas ao sistema de gestão de '\
-                                         'cursos e aulas')
+                                        'cursos e aulas')
     expect(page).to have_content('Cadastre-se')
     expect(page).to have_content('Entrar')
     expect(page).to have_content('Cursos Disponíveis')

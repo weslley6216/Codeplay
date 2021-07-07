@@ -18,7 +18,7 @@ describe 'logged in user' do
                     code: 'RUBYBASIC', price: 10,
                     enrollment_deadline: 1.month.from_now)
 
-    create(:course, name: 'HTML', description: 'Um curso de HTML', price: 15, enrollment_deadline: 2.day.ago)
+    create(:course, name: 'HTML', description: 'Um curso de HTML', price: 15, enrollment_deadline: 2.days.ago)
 
     login_user
     visit root_path
@@ -46,7 +46,7 @@ describe 'logged in user' do
     # curso com data limite ultrapassada mas com usuario logado não deve exibir o link
   end
 
-  it 'and buy a course' do 
+  it 'and buy a course' do
     course = create(:course, name: 'Ruby', price: 10)
     create(:course, name: 'Elixir', price: 20)
 

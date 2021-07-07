@@ -37,6 +37,5 @@ describe 'logged in user ' do
     expect(page).to have_content('RUBYBASIC')
     expect(page).to have_content('Gustavo Guanabara')
     expect(page).to have_link('Comprar')
-
   end
 end

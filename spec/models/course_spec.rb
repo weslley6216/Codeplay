@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe Course do
   context 'validation' do
-
     it { should validate_presence_of(:name).with_message('não pode ficar em branco') }
     it { should validate_presence_of(:code).with_message('não pode ficar em branco') }
     it { should validate_presence_of(:price).with_message('não pode ficar em branco') }

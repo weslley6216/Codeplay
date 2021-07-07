@@ -2,11 +2,9 @@ class User::LessonsController < UsersController
   before_action :set_lesson, only: %i[show]
   before_action :user_has_enrollment?, only: %i[show]
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   private
 

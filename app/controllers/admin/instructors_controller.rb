@@ -19,7 +19,7 @@ class Admin::InstructorsController < AdminController
       render :new
     end
   end
-  
+
   def edit
     @instructor = Instructor.find(params[:id])
   end
@@ -43,11 +43,9 @@ class Admin::InstructorsController < AdminController
     end
   end
 
-
   private
 
   def instructor_params
     params.require(:instructor).permit(:name, :email, :bio, :profile_picture)
   end
-
 end

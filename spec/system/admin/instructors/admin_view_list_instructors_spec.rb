@@ -10,7 +10,6 @@ describe 'Admin view instructors' do
     visit root_path
     click_on 'Professores'
 
-
     expect(page).to have_content('Gustavo Guanabara')
     expect(page).to have_content('Jackson Pires')
   end
@@ -35,7 +34,6 @@ describe 'Admin view instructors' do
   end
 
   it 'and no instructor is available' do
-
     login_admin
     visit root_path
     click_on 'Professores'

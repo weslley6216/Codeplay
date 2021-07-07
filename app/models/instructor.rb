@@ -4,7 +4,6 @@ class Instructor < ApplicationRecord
   validates :email, uniqueness: true
 
   has_one_attached :profile_picture
-  
 
   def display_name
     "#{name} - #{email}"

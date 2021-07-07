@@ -1,12 +1,11 @@
 class Admin::CoursesController < AdminController
   before_action :set_course, only: %i[edit update show destroy enroll]
-  
+
   def index
     @courses = Course.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @instructors = Instructor.all
@@ -41,6 +40,8 @@ class Admin::CoursesController < AdminController
     redirect_to admin_courses_path, notice: 'Curso removido com sucesso'
   end
 
+  def enroll; end
+
   private
 
   def set_course
@@ -50,5 +51,4 @@ class Admin::CoursesController < AdminController
   def course_params
     params.require(:course).permit(:name, :description, :code, :price, :enrollment_deadline, :instructor_id)
   end
-
 end

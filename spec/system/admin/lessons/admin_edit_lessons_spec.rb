@@ -14,13 +14,12 @@ describe 'Admin updates lessons' do
     fill_in 'Nome', with: 'Segunda aula'
     fill_in 'Conteúdo', with: 'Coleções'
     fill_in 'Duração', with: 1
-    
+
     click_on 'Atualizar'
 
     expect(page).to have_text('Segunda aula')
     expect(page).to have_text('1 minuto')
     expect(page).to have_text('Aula atualizada com sucesso!')
     expect(current_path).to eq(admin_course_path(course))
-
   end
 end

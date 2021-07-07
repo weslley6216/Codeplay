@@ -4,7 +4,7 @@ describe 'Admin deletes lesson' do
   it 'successfully' do
     course = create(:course)
     lesson = create(:lesson, course: course)
-  
+
     login_admin
     visit admin_course_path(lesson)
 
@@ -13,6 +13,5 @@ describe 'Admin deletes lesson' do
     end
     expect(page).to have_content('Aula removida com sucesso!')
     expect(current_path).to eq(admin_course_path(course))
-
   end
 end

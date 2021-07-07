@@ -23,7 +23,6 @@ describe 'Admin updates courses' do
     expect(page).to have_text(Date.current.strftime('%d/%m/%Y'))
     expect(page).to have_text('Gustavo Guanabara')
     expect(page).to have_text('Curso atualizado com sucesso!')
-
   end
 
   it 'and attributes cannot be blank' do
@@ -42,6 +41,5 @@ describe 'Admin updates courses' do
     click_on 'Atualizar'
 
     expect(page).to have_content('não pode ficar em branco', count: 3)
-
   end
 end

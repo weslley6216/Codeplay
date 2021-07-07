@@ -2,13 +2,13 @@ require 'rails_helper'
 
 describe 'Admin view courses' do
   it 'successfully' do
-    create(:course, name: 'Ruby', description: 'Um curso de Ruby', price: 10 )
+    create(:course, name: 'Ruby', description: 'Um curso de Ruby', price: 10)
     create(:course, name: 'Ruby on Rails', description: 'Um curso de Ruby on Rails', price: 20)
 
     login_admin
     visit root_path
     click_on 'Cursos'
-    
+
     expect(page).to have_content('Ruby')
     expect(page).to have_content('Um curso de Ruby')
     expect(page).to have_content('R$ 10,00')
