@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'logged in user ' do
   it 'visit home page' do
-    user = User.create!(email: 'janedoe@codeplay.com', password: '123456')
+    user = create(:user)
 
     login_as user, scope: :user
     visit root_path
@@ -14,11 +14,7 @@ describe 'logged in user ' do
   end
 
   it 'visit courses available' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com')
-    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                   code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: '22/12/2033', instructor: instructor)
+    create(:course, name: 'Ruby', description: 'Um curso de Ruby', price: 10)
 
     login_user
     visit root_path
@@ -29,11 +25,9 @@ describe 'logged in user ' do
   end
 
   it 'and click on an available course' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com')
-    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                            code: 'RUBYBASIC', price: 10,
-                            enrollment_deadline: '22/12/2033', instructor: instructor)
+    instructor = create(:instructor, name: 'Gustavo Guanabara')
+    course = create(:course, name: 'Ruby', description: 'Um curso de Ruby',
+                             code: 'RUBYBASIC', instructor: instructor)
 
     login_user
     visit user_course_path(course)

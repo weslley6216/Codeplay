@@ -44,7 +44,7 @@ describe 'User account management' do
     end
 
     it 'with email not unique' do
-      User.create!(email: 'user@user.com', password: '123456')
+      create(:user, email: 'user@user.com')
 
       visit new_user_registration_path
       click_on 'Cadastre-se'
@@ -59,8 +59,8 @@ describe 'User account management' do
 
   context 'sign in' do
     it 'with email and password' do
-      User.create!(email: 'user@user.com', password: '123456')
-      
+      create(:user, email: 'user@user.com', password: '123456')
+
       visit root_path
       click_on 'Entrar'
       fill_in 'Email', with: 'user@user.com'
@@ -78,7 +78,7 @@ describe 'User account management' do
     end
 
     it 'without valid field' do
-      User.create!(email: 'user@user.com', password: '123456')
+      create(:user)
 
       visit root_path
       click_on 'Entrar'
@@ -90,7 +90,7 @@ describe 'User account management' do
 
       expect(page).to have_text('Email ou senha inválida')
     end
-   end
+  end
 
   context 'logout' do
     it 'successfully' do
@@ -110,7 +110,7 @@ describe 'User account management' do
 
   context 'user forgot password' do
     it 'receive reset email successfully' do
-      User.create!(email: 'user@user.com', password: '123456')
+      create(:user, email: 'user@user.com')
 
       visit root_path
       click_on 'Entrar'
@@ -123,7 +123,7 @@ describe 'User account management' do
     end
 
     it 'and change password' do
-      user = User.create!(email: 'user@user.com', password: '123456')
+      user = create(:user)
       token = user.send_reset_password_instructions
 
       visit edit_user_password_path(reset_password_token: token)

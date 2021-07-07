@@ -13,11 +13,9 @@ describe 'Visitor visit homepage' do
   end
 
   it 'and click on an available course' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com')
-    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                            code: 'RUBYBASIC', price: 10,
-                            enrollment_deadline: '22/12/2033', instructor: instructor)
+    instructor = create(:instructor, name: 'Gustavo Guanabara')
+    course = create(:course, name: 'Ruby', description: 'Um curso de Ruby', code: 'RUBYBASIC',
+                             price: 10, enrollment_deadline: '22/12/2033', instructor: instructor)
 
     visit course_path(course)
 
@@ -32,16 +30,11 @@ describe 'Visitor visit homepage' do
   end
 
   it 'must be signed in to enroll' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara', 
-                                    email: 'guanabara@codeplay.com')
-    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                   code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: 1.month.from_now, instructor: instructor)
+    create(:course, name: 'Ruby')
     visit root_path
     click_on 'Ruby'
 
     expect(page).not_to have_link 'Comprar'
     expect(page).to have_link 'Entrar', href: new_user_session_path
   end
-
 end
