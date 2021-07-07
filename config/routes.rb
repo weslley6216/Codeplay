@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
   devise_for :admins
   devise_for :users
+  resources :courses, only: %i[show]
 
   namespace :admin do
     resources :instructors
@@ -19,6 +20,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :courses, only: %i[show]
-
+  
+  namespace :api do
+    namespace :v1 do
+      resources :courses, only: %i[index]
+    end
+  end
 end

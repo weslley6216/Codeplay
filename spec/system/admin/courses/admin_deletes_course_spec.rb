@@ -2,12 +2,9 @@ require 'rails_helper'
 
 describe 'Admin deletes course' do
   it 'successfully' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com')
-    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                            code: 'RUBYBASIC', price: 10,
-                            enrollment_deadline: '22/12/2033', instructor: instructor)
-  
+
+    course = create(:course)
+
     login_admin
     visit admin_course_path(course)
 

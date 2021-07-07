@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe 'Admin registers courses' do
   it 'successfully' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com')
+    instructor = create(:instructor)
 
     login_admin
     visit admin_courses_path
@@ -28,11 +27,7 @@ describe 'Admin registers courses' do
   end
 
   it 'and attributes cannot be blank' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com')
-    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                   code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: '22/12/2033', instructor: instructor)
+    create(:course)
 
     login_admin
     visit admin_courses_path
@@ -49,11 +44,7 @@ describe 'Admin registers courses' do
   end
 
   it 'and code must be unique' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com')
-    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                   code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: '22/12/2033', instructor: instructor)
+    create(:course, code: 'RUBYBASIC')
 
     login_admin
     visit admin_courses_path

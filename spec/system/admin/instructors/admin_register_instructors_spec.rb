@@ -23,8 +23,8 @@ describe 'Admin registers instructors' do
   end
 
   it 'and attributes cannot be blank' do
-    Instructor.create!(name: 'Gustavo Guanabara', email: 'guanabara@codeplay.com',
-                       bio: 'Professor por vocação')
+    create(:instructor)
+
     login_admin
     visit admin_instructors_path
 
@@ -33,14 +33,12 @@ describe 'Admin registers instructors' do
     fill_in 'Email', with: ''
     fill_in 'Descrição', with: ''
     click_on 'Cadastrar Professor'
-    
 
-  expect(page).to have_content('não pode ficar em branco', count: 2)
+    expect(page).to have_content('não pode ficar em branco', count: 2)
   end
 
   it 'and email must be unique' do
-    Instructor.create!(name: 'Gustavo Guanabara', email: 'guanabara@codeplay.com',
-                       bio: 'Professor por vocação')
+    create(:instructor, email: 'guanabara@codeplay.com')
 
     login_admin
     visit admin_instructors_path

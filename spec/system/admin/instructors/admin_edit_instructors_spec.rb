@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe 'Admin updates instructor registration' do
   it 'successfully' do
-    instructor = Instructor.create(name: 'GustavoGuanabara', email: 'guanabara@codeplay.com',
-                                   bio: 'Professor por vocação') 
+    instructor = create(:instructor, name: 'GustavoGuanabara')
     instructor.profile_picture.attach(io: File.open('spec/fixtures/foto_perfil.jpeg'),
                                       filename: 'foto_perfil.jpeg')
     login_admin
@@ -26,8 +25,7 @@ describe 'Admin updates instructor registration' do
 
 
   it 'and attributes cannot be blank' do
-    instructor = Instructor.create(name: 'GustavoGuanabara', email: 'guanabara@codeplay.com',
-                                   bio: 'Professor por vocação')
+    instructor = create(:instructor)
     instructor.profile_picture.attach(io: File.open('spec/fixtures/foto_perfil.jpeg'),
                                       filename: 'foto_perfil.jpeg')
     
@@ -44,8 +42,7 @@ describe 'Admin updates instructor registration' do
   end
 
   it 'and email must be unique' do
-    instructor = Instructor.create(name: 'GustavoGuanabara', email: 'guanabara@codeplay.com',
-                                   bio: 'Professor por vocação')
+    instructor = create(:instructor, email: 'guanabara@codeplay.com')
     instructor.profile_picture.attach(io: File.open('spec/fixtures/foto_perfil.jpeg'),
                                       filename: 'foto_perfil.jpeg')
 

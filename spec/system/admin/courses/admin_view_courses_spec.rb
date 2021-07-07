@@ -2,16 +2,8 @@ require 'rails_helper'
 
 describe 'Admin view courses' do
   it 'successfully' do
-    instructor = Instructor.create!(name: 'Gustavo Guanabara',
-                                    email: 'guanabara@codeplay.com')
-
-    Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                   code: 'RUBYBASIC', price: 10,
-                   enrollment_deadline: '22/12/2033', instructor: instructor)
-    Course.create!(name: 'Ruby on Rails',
-                   description: 'Um curso de Ruby on Rails',
-                   code: 'RUBYONRAILS', price: 20,
-                   enrollment_deadline: '20/12/2033', instructor: instructor)
+    create(:course, name: 'Ruby', description: 'Um curso de Ruby', price: 10 )
+    create(:course, name: 'Ruby on Rails', description: 'Um curso de Ruby on Rails', price: 20)
 
     login_admin
     visit root_path
